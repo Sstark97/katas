@@ -7,4 +7,11 @@ describe('Fizzbuzz Test', () => {
 
         expect(fizz).toBe("fizz")
     })
+
+    it("check that number 5 returns buzz", () => {
+        const fizzbuzzResult = fizzbuzz()
+        const buzz = fizzbuzzResult.find((num, pos) => num === "buzz" && (pos + 1) % 5 === 0)
+
+        expect(buzz).toBe("buzz")
+    })
 });
