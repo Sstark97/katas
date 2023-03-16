@@ -8,7 +8,7 @@ const whoFizzBuzzElementIs = (num: number) => {
 }
 
 export const fizzbuzz = () => {
-    const arr = [1, 2, 3, 4, 5];
+    const arr = Array.from(Array(100).keys()).map(num => num + 1)
 
     return arr.map(num => whoFizzBuzzElementIs(num))
 };
