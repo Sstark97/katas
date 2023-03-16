@@ -1,11 +1,14 @@
 export const whoFizzBuzzElementIs = (num: number) => {
+    const numberStringify = num.toString();
+
     if (num % 15 === 0) {
         return "fizzbuzz"
-    } else if (num % 3 === 0) {
+    } else if (num % 3 === 0 || numberStringify.includes("3")) {
         return "fizz"
     } else if (num % 5 === 0) {
         return "buzz"
     }
+
     return num
 }
 
