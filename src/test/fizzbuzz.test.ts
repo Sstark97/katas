@@ -14,4 +14,10 @@ describe('Fizzbuzz Test', () => {
 
         expect(buzz).toBe("buzz")
     })
+
+    it("check that fizzbuzz have a length of 100", () => {
+        const fizzbuzzResult = fizzbuzz()
+
+        expect(fizzbuzzResult.length).toBe(100)
+    })
 });
