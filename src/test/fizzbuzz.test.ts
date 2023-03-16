@@ -1,4 +1,4 @@
-import { fizzbuzz } from "../core/fizzbuzz";
+import { fizzbuzz, whoFizzBuzzElementIs } from "../core/fizzbuzz";
 
 describe('Fizzbuzz Test', () => {
     it("check that number 3 returns fizz", () => {
@@ -26,5 +26,9 @@ describe('Fizzbuzz Test', () => {
         const fizzbuzzRes = fizzbuzzResult.find((num, pos) => num === "fizzbuzz" && (pos + 1) % 15 === 0)
 
         expect(fizzbuzzRes).toBe("fizzbuzz")
+    })
+
+    it("check that a number is fizz if it is divisible by 3 or if it has a 3 in it", () => {
+        expect(whoFizzBuzzElementIs(13)).toBe("fizz")
     })
 });
