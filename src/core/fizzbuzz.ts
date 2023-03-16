@@ -1,15 +1,15 @@
 export const whoFizzBuzzElementIs = (num: number) => {
     const numberStringify = num.toString();
+    let fizzbuzz = ""
 
-    if (num % 15 === 0) {
-        return "fizzbuzz"
-    } else if (num % 3 === 0 || numberStringify.includes("3")) {
-        return "fizz"
-    } else if (num % 5 === 0) {
-        return "buzz"
+    if (num % 3 === 0 || numberStringify.includes("3")) {
+        fizzbuzz += "fizz"
+    }
+    if (num % 5 === 0 || numberStringify.includes("5")) {
+        fizzbuzz += "buzz"
     }
 
-    return num
+    return fizzbuzz === "" ? num : fizzbuzz
 }
 
 export const fizzbuzz = () => {

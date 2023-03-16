@@ -33,6 +33,6 @@ describe('Fizzbuzz Test', () => {
     })
 
     it("check that a number is buzz if it is divisible by 5 or if it has a 5 in it", () => {
-        expect(whoFizzBuzzElementIs(51)).toBe("buzz")
+        expect(whoFizzBuzzElementIs(52)).toBe("buzz")
     })
 });
