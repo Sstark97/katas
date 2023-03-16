@@ -1,3 +1,3 @@
 export const fizzbuzz = () => {
-    return undefined;
+    console.log("fizz")
 };
