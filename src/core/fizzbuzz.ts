@@ -1,3 +1,10 @@
 export const fizzbuzz = () => {
-    return [1,2,"fizz"]
+    const arr = [1, 2, 3];
+
+    return arr.map(num => {
+        if(num % 3 === 0) {
+            return "fizz"
+        }
+        return num
+    })
 };
