@@ -1,3 +1,3 @@
 export const fizzbuzz = () => {
-    console.log("fizz")
+    return [1,2,"fizz"]
 };
