@@ -21,7 +21,7 @@ describe('Fizzbuzz Test', () => {
         expect(fizzbuzzResult.length).toBe(100)
     })
 
-    it("check that fizzbuzz of 15 is fizzbuzz", () => {
+    it("check that fizzbuzz of multiples of 3 and 5 is fizzbuzz", () => {
         const fizzbuzzResult = fizzbuzz()
         const fizzbuzzRes = fizzbuzzResult.find((num, pos) => num === "fizzbuzz" && (pos + 1) % 15 === 0)
 
