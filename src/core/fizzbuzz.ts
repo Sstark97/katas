@@ -5,7 +5,11 @@ export const whoFizzBuzzElementIs = (num: number) => {
     if (num % 3 === 0 || numberStringify.includes("3")) {
         fizzbuzz += "fizz"
     }
-    if (num % 5 === 0 || numberStringify.includes("5")) {
+    if (num % 5 === 0) {
+        fizzbuzz += "buzz"
+    }
+
+    if(numberStringify.includes("5")) {
         fizzbuzz += "buzz"
     }
 
