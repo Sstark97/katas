@@ -1,8 +1,10 @@
 export const whoFizzBuzzElementIs = (num: number) => {
     const numberStringify = num.toString();
+    const isDivisibleByThree = num % 3 === 0
+    const isDivisibleByFive = num % 5 === 0
     let fizzbuzz = ""
 
-    if (num % 3 === 0) {
+    if (isDivisibleByThree) {
         fizzbuzz += "fizz"
     }
 
@@ -10,7 +12,7 @@ export const whoFizzBuzzElementIs = (num: number) => {
         fizzbuzz += "fizz"
     }
 
-    if (num % 5 === 0) {
+    if (isDivisibleByFive) {
         fizzbuzz += "buzz"
     }
 
