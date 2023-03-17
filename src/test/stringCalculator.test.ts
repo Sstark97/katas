@@ -12,4 +12,8 @@ describe("String Calculator test", () => {
     it("should return the sum of numbers contains in string separated by commas", () => {
         expect(add("1, 2")).toBe("3")
     })
+
+    it("should return an unknow number of arguments", () => {
+        expect(add("1, 2, 3")).toBe("6")
+    })
 })
