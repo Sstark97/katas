@@ -15,20 +15,27 @@ const checkIfSeparatorIsInTheLastPositionOf = (theOperation: string) => {
     }
 }
 
+const extractNumbersAndSeparator = (inTheOperation: string) => {
+    let separator: RegExp|string = /[,\n]/
+    let operationToIterate = []
+    let numbersToSum = inTheOperation
+
+    if (inTheOperation.startsWith("//")) {
+        operationToIterate = numbersToSum.split(/[\n]/)
+        separator = operationToIterate[0].replace("//", "")
+        numbersToSum = operationToIterate[1]
+    }
+    return [numbersToSum, separator];
+}
+
 export const add = (theOperation: string) => {
     checkIfSeparatorIsInTheLastPositionOf(theOperation);
     checkIfTwoSeparatorsAreTogetherIn(theOperation);
 
-    let separator: RegExp|string = /[,\n]/
-    let theOperationInThisToIterate = []
-    let numbersToSum = theOperation
-    if (theOperation.startsWith("//")) {
-        theOperationInThisToIterate = numbersToSum.split(/[\n]/)
-        separator = theOperationInThisToIterate[0].replace("//", "")
-        numbersToSum = theOperationInThisToIterate[1]
-    }
+    const [numbersToSum, separator] = extractNumbersAndSeparator(theOperation);
+    const numbersToString = numbersToSum as string;
 
-    theOperationInThisToIterate = numbersToSum.split(separator)
+    const theOperationInThisToIterate = numbersToString.split(separator)
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
 
     return numbersToSum === "" ? "0" : sum.toString()
