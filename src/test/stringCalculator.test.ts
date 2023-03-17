@@ -20,4 +20,8 @@ describe("String Calculator test", () => {
     it("should return the sum of numbers contains in string separated by commas and newlines", () => {
         expect(add("1\n2, 3")).toBe("6")
     })
+
+    it("should return error message if separators are next to each other", () => {
+        expect(() => add("175.2,\n35")).toThrow(Error)
+    })
 })
