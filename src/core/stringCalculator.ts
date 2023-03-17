@@ -10,6 +10,10 @@ function checkIfTwoSeparatorsAreTogetherIn(theOperation: string) {
 }
 
 export const add = (theOperation: string) => {
+    if (theOperation.at(-1)?.match(/[,\n]/)) {
+        throw new Error("Number expected but EOF found.");
+    }
+
     checkIfTwoSeparatorsAreTogetherIn(theOperation);
     const theOperationInThisToIterate = theOperation.split(/[,\n]/)
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
