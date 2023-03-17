@@ -1,12 +1,12 @@
 function checkIfTwoSeparatorsAreTogetherIn(theOperation: string) {
-    for (let i = 1; i < theOperation.length; i++) {
-        const currentElement = theOperation[i].match(/[,\n]/)
-        const previousElement = theOperation[i-1].match(/[,\n]/)
+    theOperation.split('').forEach((char, index) => {
+        const currentElement = char.match(/[,\n]/)
+        const nextElement = theOperation[index+1]?.match(/[,\n]/);
 
-        if (currentElement && previousElement) {
-            throw new Error(`Number expected but '${theOperation[i]}' found at position ${i}.`)
+        if (currentElement && nextElement) {
+            throw new Error(`Number expected but '${theOperation[index + 1]}' found at position ${index + 1}.`);
         }
-    }
+    });
 }
 
 export const add = (theOperation: string) => {
