@@ -19,8 +19,17 @@ export const add = (theOperation: string) => {
     checkIfSeparatorIsInTheLastPositionOf(theOperation);
     checkIfTwoSeparatorsAreTogetherIn(theOperation);
 
-    const theOperationInThisToIterate = theOperation.split(/[,\n]/)
+    let separator: RegExp|string = /[,\n]/
+    let theOperationInThisToIterate = []
+    let numbersToSum = theOperation
+    if (theOperation.startsWith("//")) {
+        theOperationInThisToIterate = numbersToSum.split(/[\n]/)
+        separator = theOperationInThisToIterate[0].replace("//", "")
+        numbersToSum = theOperationInThisToIterate[1]
+    }
+
+    theOperationInThisToIterate = numbersToSum.split(separator)
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
 
-    return theOperation === "" ? "0" : sum.toString()
+    return numbersToSum === "" ? "0" : sum.toString()
 }

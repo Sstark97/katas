@@ -30,6 +30,6 @@ describe("String Calculator test", () => {
     })
 
     it("should return the sums of the numbers with custom separators", () => {
-        expect(add("\"//;\\n1;2\"")).toBe("3")
+        expect(add("//;\n1;2")).toBe("3")
     })
 })
