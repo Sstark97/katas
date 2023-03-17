@@ -1,13 +1,18 @@
-export const add = (theOperationInThis: string) => {
-    for (let i = 0; i < theOperationInThis.length; i++) {
-        if (i !== 0) {
-            if (theOperationInThis[i].match(/[,\n]/) && theOperationInThis[i-1].match(/[,\n]/)) {
-                throw new Error(`Number expected but '${theOperationInThis[i]}' found at position ${i}.`)
-            }
+function checkIfTwoSeparatorsAreTogetherIn(theOperation: string) {
+    for (let i = 1; i < theOperation.length; i++) {
+        const currentElement = theOperation[i].match(/[,\n]/)
+        const previousElement = theOperation[i-1].match(/[,\n]/)
+
+        if (currentElement && previousElement) {
+            throw new Error(`Number expected but '${theOperation[i]}' found at position ${i}.`)
         }
     }
-    const theOperationInThisToIterate = theOperationInThis.split(/[,\n]/)
+}
+
+export const add = (theOperation: string) => {
+    checkIfTwoSeparatorsAreTogetherIn(theOperation);
+    const theOperationInThisToIterate = theOperation.split(/[,\n]/)
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
 
-    return theOperationInThis === "" ? "0" : sum.toString()
+    return theOperation === "" ? "0" : sum.toString()
 }
