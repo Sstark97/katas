@@ -13,3 +13,7 @@ Allow the add method to handle an unknow number of arguments.
 ## Newline as separator
 - "1\n2,3" should return "6".
 - "175.2,\n35" is invalid and should return the message "Number expected but '\n' found at position 6."
+
+## Missing number in last position
+Don’t allow the input to end in a separator.
+"1,3," is invalid and should return the message Number expected but EOF found.
