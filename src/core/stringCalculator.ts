@@ -1,10 +1,6 @@
 export const add = (theOperationInThis: string) => {
     const theOperationInThisToIterate = theOperationInThis.split((","))
-    let sum = 0
-
-    for (let i = 0; i < theOperationInThisToIterate.length; i++) {
-        sum += parseInt(theOperationInThisToIterate[i])
-    }
+    const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseInt(currentNumber), 0)
 
     return theOperationInThis === "" ? "0" : sum.toString()
 }
