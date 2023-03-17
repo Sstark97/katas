@@ -1,3 +1,7 @@
 export const add = (theOperationInThis: string) => {
-    return "0";
+    if(theOperationInThis === "") {
+        return "0"
+    }
+
+    return theOperationInThis
 }
