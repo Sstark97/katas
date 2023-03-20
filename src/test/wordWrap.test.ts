@@ -10,6 +10,6 @@ describe('Word wrap',() => {
     })
 
     it("return the string with column number as line breaks", () => {
-        expect(() => wrap("hello", 2)).toBe("he\nllo")
+        expect(wrap("hello", 2)).toBe("he\nllo")
     })
 });
