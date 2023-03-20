@@ -46,6 +46,6 @@ describe("String Calculator test", () => {
     })
 
     it("should return all error messages separated by newlines.", () => {
-        expect(() => add("-1,,2")).toThrow("Negative not allowed : -1\\nNumber expected but ',' found at position 3.")
+        expect(() => add("-1,,2")).toThrow("Negative not allowed : -1\nNumber expected but ',' found at position 3.")
     })
 })
