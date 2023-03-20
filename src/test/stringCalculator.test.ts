@@ -37,7 +37,11 @@ describe("String Calculator test", () => {
         expect(() => add("//|\n1|2,3")).toThrow("'|' expected but ',' found at position 3.")
     })
 
-    it("should return error message if have one negative", () => {
+    it("should return error message if have one negative number", () => {
         expect(() => add("-1,2")).toThrow("Negative not allowed : -1")
+    })
+
+    it("should return error message if have more than one negative number", () => {
+        expect(() => add("2, -4, -5")).toThrow("Negative not allowed : -4, -5")
     })
 })
