@@ -10,8 +10,7 @@ Like a word processor, break the line by replacing the last space in a line with
 
 ## Use Cases
 - "", 1 -> ""
-- null, 1 -> ""
-- "hola", -2 -> Throw Exception (No se considera ancho de columna negativo)
-- "hola", 7 -> "hola"
-- "hola", 2 -> "ho\nla"
-- "hola mundo", 7 -> "hola\nmundo"
+- "hello", -2 -> "Error: columnNumber must be a positive number and it is: -2"
+- "hello", 7 -> "hello"
+- "hello", 2 -> "he\nllo"
+- "hello world", 7 -> "hello\nworld"
