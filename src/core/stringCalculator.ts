@@ -15,6 +15,15 @@ const checkIfSeparatorIsInTheLastPositionOf = (theOperation: string) => {
     }
 }
 
+const checkIfTheNumbersHaveMoreThanOneSeparator = (numbersToSum: string, separator: RegExp | string) => {
+    const haveMoreThanOneSeparator = numbersToSum.split("")
+        .find(char => char !== separator && isNaN(parseFloat(char)))
+    if (haveMoreThanOneSeparator) {
+        const differentSeparatorPos = numbersToSum.indexOf(haveMoreThanOneSeparator)
+        throw new Error(`'${separator}' expected but '${haveMoreThanOneSeparator}' found at position ${differentSeparatorPos}.`)
+    }
+}
+
 const extractNumbersAndSeparator = (inTheOperation: string) => {
     let separator: RegExp|string = /[,\n]/
     let operationToIterate = []
@@ -24,11 +33,7 @@ const extractNumbersAndSeparator = (inTheOperation: string) => {
         operationToIterate = numbersToSum.split(/[\n]/)
         separator = operationToIterate[0].replace("//", "")
         numbersToSum = operationToIterate[1]
-        numbersToSum.split("").forEach((char, index) => {
-            if(char !== separator && isNaN(parseFloat(char))) {
-                throw new Error(`'${separator}' expected but '${char}' found at position ${index}.`)
-            }
-        })
+        checkIfTheNumbersHaveMoreThanOneSeparator(numbersToSum, separator);
     }
 
     return [numbersToSum, separator];
