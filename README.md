@@ -29,3 +29,10 @@ a separate line that looks like this:
 - "//|\n1|2,3" is invalid and should return the message "'|' expected but ',' found at position 3."
 
 All existing scenarios should work as before.
+
+## Negative numbers
+Calling add with negative numbers will return the message "Negative not allowed : " listing all negative numbers that 
+were in the list of numbers.
+
+- "-1,2" is invalid and should return the message "Negative not allowed : -1"
+- "2,-4,-5" is invalid and should return the message "Negative not allowed : -4, -5"
