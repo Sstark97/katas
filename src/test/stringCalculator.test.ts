@@ -32,4 +32,8 @@ describe("String Calculator test", () => {
     it("should return the sums of the numbers with custom separators", () => {
         expect(add("//;\n1;2")).toBe("3")
     })
+
+    it("should return error message if there more than one separator custom", () => {
+        expect(add("//|\n1|2,3")).toThrow("'|' expected but ',' found at position 3.")
+    })
 })
