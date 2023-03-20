@@ -36,4 +36,8 @@ describe("String Calculator test", () => {
     it("should return error message if there more than one separator custom", () => {
         expect(() => add("//|\n1|2,3")).toThrow("'|' expected but ',' found at position 3.")
     })
+
+    it("should return error message if have one negative", () => {
+        expect(() => add("-1,2")).toThrow("Negative not allowed : -1")
+    })
 })
