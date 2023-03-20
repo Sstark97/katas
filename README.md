@@ -36,3 +36,10 @@ were in the list of numbers.
 
 - "-1,2" is invalid and should return the message "Negative not allowed : -1"
 - "2,-4,-5" is invalid and should return the message "Negative not allowed : -4, -5"
+
+## Multiple errors
+Calling add with multiple errors will return all error messages separated by newlines.
+
+"-1,,2" is invalid and return the message "Negative not allowed : -1\nNumber expected but ',' 
+found at position 3." "-1,,-2" is invalid and return the message "Negative not allowed : 
+-1\nNumber expected but ',' found at position 3.\nNegative not allowed : -2"

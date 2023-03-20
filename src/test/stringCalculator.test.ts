@@ -44,4 +44,8 @@ describe("String Calculator test", () => {
     it("should return error message if have more than one negative number", () => {
         expect(() => add("2, -4, -5")).toThrow("Negative not allowed : -4, -5")
     })
+
+    it("should return all error messages separated by newlines.", () => {
+        expect(() => add("-1,,2")).toThrow("Negative not allowed : -1\\nNumber expected but ',' found at position 3.")
+    })
 })
