@@ -7,6 +7,11 @@ const checkIfIsNegative = (columnNumber: number) => {
 export const wrap = (text: string, columnNumber: number) => {
     checkIfIsNegative(columnNumber)
 
-    const char = text[columnNumber];
-    return text.replace(char, `\n${char}`)
+    let textWithLineBreaks = ""
+
+    for (let i = 0; i < text.length; i += columnNumber) {
+        textWithLineBreaks += `${text.substring(i, i + columnNumber)}\n`
+    }
+
+    return textWithLineBreaks.slice(0, -1)
 }

@@ -10,7 +10,7 @@ describe('Word wrap',() => {
     })
 
     it("return the text with column number as line breaks", () => {
-        expect(wrap("hello", 2)).toBe("he\nllo")
+        expect(wrap("hello", 2)).toBe("he\nll\no")
     })
 
     it("return the text with multiple line breaks", () => {
