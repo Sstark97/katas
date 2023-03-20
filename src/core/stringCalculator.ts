@@ -39,8 +39,8 @@ const extractNumbersAndSeparator = (inTheOperation: string) => {
     return [numbersToSum, separator];
 }
 
-const checkNegativeNumbersIn = (theOperationInThisToIterate: string[]) => {
-    const negativeNumbers = theOperationInThisToIterate.filter(number => parseFloat(number) < 0)
+const checkNegativeNumbersIn = (theOperationToIterate: string[]) => {
+    const negativeNumbers = theOperationToIterate.filter(number => parseFloat(number) < 0)
     if (negativeNumbers.length > 0) {
         const negativeNumbersJoined = negativeNumbers.join(",").trim()
         throw new Error(`Negative not allowed : ${negativeNumbersJoined}`)
