@@ -11,6 +11,6 @@ Like a word processor, break the line by replacing the last space in a line with
 ## Use Cases
 - "", 1 -> ""
 - "hello", -2 -> "Error: columnNumber must be a positive number and it is: -2"
-- "hello", 7 -> "hello"
 - "hello", 2 -> "he\nllo"
+- "hello", 7 -> "hello"
 - "hello world", 7 -> "hello\nworld"
