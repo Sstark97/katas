@@ -60,20 +60,24 @@ const checkNegativeNumbersIn = (theOperationToIterate: string[]) => {
     return error
 }
 
-export const add = (theOperation: string) => {
-    const [numbersToSum, separator, errorSeparator] = extractNumbersAndSeparator(theOperation);
-    const numbersToString = numbersToSum as string;
-    const theOperationInThisToIterate = numbersToString.split(separator)
+function checkAllErrors(theOperationInThisToIterate: string[], theOperation: string, errorSeparator: string) {
     let errors = ""
-
     errors += checkNegativeNumbersIn(theOperationInThisToIterate)
     errors += checkIfSeparatorIsInTheLastPositionOf(theOperation)
     errors += checkIfTwoSeparatorsAreTogetherIn(theOperation)
     errors += errorSeparator
 
-    if(errors !== "") {
+    if (errors !== "") {
         throw new Error(errors)
     }
+}
+
+export const add = (theOperation: string) => {
+    const [numbersToSum, separator, errorSeparator] = extractNumbersAndSeparator(theOperation);
+    const numbersToString = numbersToSum as string;
+    const theOperationInThisToIterate = numbersToString.split(separator)
+
+    checkAllErrors(theOperationInThisToIterate, theOperation, errorSeparator as string);
 
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
 
