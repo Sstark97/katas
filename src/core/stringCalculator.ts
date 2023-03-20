@@ -47,6 +47,10 @@ export const add = (theOperation: string) => {
     const numbersToString = numbersToSum as string;
 
     const theOperationInThisToIterate = numbersToString.split(separator)
+    if(parseFloat(theOperationInThisToIterate[0]) < 0) {
+        throw new Error(`Negative not allowed : ${parseFloat(theOperationInThisToIterate[0])}`)
+    }
+
     const sum = theOperationInThisToIterate.reduce((previousNumber, currentNumber) => previousNumber + parseFloat(currentNumber), 0)
 
     return numbersToSum === "" ? "0" : sum.toString()
