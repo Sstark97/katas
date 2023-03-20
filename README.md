@@ -7,3 +7,11 @@ column number. The function returns the string, but with line breaks inserted at
 no line is longer than the column number. You try to break lines at word boundaries.
 
 Like a word processor, break the line by replacing the last space in a line with a newline.
+
+## Use Cases
+- "", 1 -> ""
+- null, 1 -> ""
+- "hola", -2 -> Throw Exception (No se considera ancho de columna negativo)
+- "hola", 7 -> "hola"
+- "hola", 2 -> "ho\nla"
+- "hola mundo", 7 -> "hola\nmundo"
