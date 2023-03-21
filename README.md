@@ -47,3 +47,5 @@ and some other text line.
 ```
 
 There are multiple edge cases to consider: multiple links per line, several links sharing the same url...
+
+The starting point is in the [Adrián Ferrera repository](https://github.com/adrian-afergon/Katas/tree/markdown/4-MarkdownPage-public-part)
