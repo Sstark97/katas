@@ -1,4 +1,4 @@
-import {Anchor} from "../Anchor";
+import { Anchor } from "../Anchor";
 
 describe('Anchor', () => {
     it('build from markdown expression', () => {

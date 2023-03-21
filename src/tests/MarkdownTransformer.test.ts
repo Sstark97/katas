@@ -1,5 +1,5 @@
 import * as fs from 'fs'
-import {MarkDownTransformer} from "../MarkdownTransformer";
+import { MarkDownTransformer } from "../MarkdownTransformer";
 
 describe('Markdown Transform', () => {
     const inputFile = "./input.md"

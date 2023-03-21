@@ -1,5 +1,5 @@
-import {MarkdownPage} from "../MarkdownPage";
-import {Anchor} from "../Anchor";
+import { MarkdownPage } from "../MarkdownPage";
+import { Anchor } from "../Anchor";
 
 it.each([
     ['', ''],
