@@ -1,4 +1,4 @@
-import {FileSystem} from "../fileSystem";
+import {FileSystem} from "../FileSystem";
 import * as fs from "fs";
 
 describe('FileSystem', () => {

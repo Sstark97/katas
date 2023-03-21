@@ -1,4 +1,4 @@
-import {FileSystem} from "./filesystem";
+import {FileSystem} from "./FileSystem";
 import {MarkdownPage} from "./MarkdownPage";
 
 export class MarkDownTransformer {
