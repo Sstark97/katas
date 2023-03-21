@@ -1,10 +1,10 @@
 import {Anchor} from "./Anchor";
 
 export class MarkdownPage {
-    constructor(private readonly inputContent: string) {}
+    constructor(private readonly markdownContent: string) {}
 
     moveLinksToFootNotesWithAnchors(): string {
-        const anchors = this.findAnchorsAtPage(this.inputContent)
+        const anchors = this.findAnchorsAtPageIn(this.markdownContent)
         const createDictionaryFromAnchors = (total: Record<string, Anchor>, current: Anchor, index: number) => {
             return {...total, [`[^anchor${index + 1}]`]: current}
         };
@@ -14,7 +14,7 @@ export class MarkdownPage {
         return this.addFootNotes(replacedText, anchorsDictionary);
     }
 
-    findAnchorsAtPage(text: string): Array<Anchor> {
+    findAnchorsAtPageIn(text: string): Array<Anchor> {
         const anchors: Array<Anchor> = new Array<Anchor>()
 
         if (this.containsAnchor(text)) {
@@ -28,7 +28,7 @@ export class MarkdownPage {
             const anchor = Anchor.fromMarkdownExpression(anchorExpression)
             anchors.push(anchor)
 
-            const results = this.findAnchorsAtPage(rest);
+            const results = this.findAnchorsAtPageIn(rest);
             results.forEach(item => {
                 const alreadyInList = anchors.find((current) => current.isEqual(item));
                 if (!alreadyInList) {
@@ -43,7 +43,7 @@ export class MarkdownPage {
         return Object.keys(anchorsDictionary).reduce((transformedContent: string, currentValue: string) => {
             const anchor = anchorsDictionary[currentValue];
             return transformedContent.replace(`[${anchor.text}](${anchor.url})`, `${anchor.text} ${currentValue}`);
-        }, this.inputContent);
+        }, this.markdownContent);
     }
 
     addFootNotes(text: string, anchorsDictionary: Record<string, Anchor>): string {

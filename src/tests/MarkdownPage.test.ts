@@ -22,14 +22,14 @@ it.each([
 describe('findAnchorsAtPage', () => {
     it('should create a dictionary with an anchor at text', () => {
             const inputContent = '[visible text link](url)';
-            const anchors = new MarkdownPage(inputContent).findAnchorsAtPage(inputContent);
+            const anchors = new MarkdownPage(inputContent).findAnchorsAtPageIn(inputContent);
             const expected = [new Anchor('url', 'visible text link')];
             expect(anchors).toEqual(expected)
         })
 
     it('should create a dictionary with multiple anchors at text', () => {
         const inputContent = '[visible text link](url)[other visible text link](other url)';
-        const anchors = new MarkdownPage(inputContent).findAnchorsAtPage(inputContent);
+        const anchors = new MarkdownPage(inputContent).findAnchorsAtPageIn(inputContent);
         const expected = [
             new Anchor('url', 'visible text link'),
             new Anchor('other url', 'other visible text link')
@@ -39,7 +39,7 @@ describe('findAnchorsAtPage', () => {
 
     it('should create a dictionary with multiple anchors at text with text on the middle', () => {
         const inputContent = '[visible text link](url), [other visible text link](other url)';
-        const anchors = new MarkdownPage(inputContent).findAnchorsAtPage(inputContent);
+        const anchors = new MarkdownPage(inputContent).findAnchorsAtPageIn(inputContent);
         const expected = [
             new Anchor('url', 'visible text link'),
             new Anchor('other url', 'other visible text link')
@@ -49,7 +49,7 @@ describe('findAnchorsAtPage', () => {
 
     it('returns anchors without duplications given a text with same anchor', () => {
         const inputContent = '[visible text link](url), [visible text link](url)';
-        const dictionary = new MarkdownPage(inputContent).findAnchorsAtPage(inputContent);
+        const dictionary = new MarkdownPage(inputContent).findAnchorsAtPageIn(inputContent);
         const expected = [
             new Anchor('url', 'visible text link'),
         ];
@@ -58,7 +58,7 @@ describe('findAnchorsAtPage', () => {
 
     it('returns anchors given a text with more characters after the last anchor', function () {
         const inputContent = '[visible text link](url), [other visible text link](other url) some text';
-        const dictionary = new MarkdownPage(inputContent).findAnchorsAtPage(inputContent);
+        const dictionary = new MarkdownPage(inputContent).findAnchorsAtPageIn(inputContent);
         const expected = [
             new Anchor('url', 'visible text link'),
             new Anchor('other url', 'other visible text link')
