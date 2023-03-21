@@ -10,7 +10,7 @@ export class MarkdownPage {
         };
         const anchorsDictionary = anchors.reduce(createDictionaryFromAnchors, {})
 
-        const replacedText = this.replaceAnchors(this.inputContent, anchorsDictionary)
+        const replacedText = this.replaceAnchorsIn(anchorsDictionary)
         return this.addFootNotes(replacedText, anchorsDictionary);
     }
 
@@ -39,7 +39,7 @@ export class MarkdownPage {
         return anchors
     }
 
-    private replaceAnchors(inputContent: string, anchorsDictionary: Record<string, Anchor>): string {
+    private replaceAnchorsIn(anchorsDictionary: Record<string, Anchor>): string {
         return Object.keys(anchorsDictionary).reduce((transformedContent: string, currentValue: string) => {
             const anchor = anchorsDictionary[currentValue];
             return transformedContent.replace(`[${anchor.text}](${anchor.url})`, `${anchor.text} ${currentValue}`);
