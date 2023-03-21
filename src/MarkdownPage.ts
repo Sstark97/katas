@@ -23,9 +23,9 @@ export class MarkdownPage {
             const closingTagPosition = text.indexOf(closingTag);
             const openingTagPosition = text.indexOf(openingTag)
 
-            const anchoreExpression = text.substring(openingTagPosition, closingTagPosition + closingTag.length)
+            const anchorExpression = text.substring(openingTagPosition, closingTagPosition + closingTag.length)
             const rest = text.substring(closingTagPosition + closingTag.length)
-            const anchor = Anchor.fromMarkdownExpression(anchoreExpression)
+            const anchor = Anchor.fromMarkdownExpression(anchorExpression)
             anchors.push(anchor)
 
             const results = this.findAnchorsAtPage(rest);
