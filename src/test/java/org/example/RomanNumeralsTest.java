@@ -11,17 +11,17 @@ class RomanNumeralsTest {
     }
 
     @Test
-    void number_one_should_return_II() {
+    void number_two_should_return_II() {
         assertEquals(RomanNumerals.transform(2), "II");
     }
 
     @Test
-    void number_one_should_return_III() {
+    void number_three_should_return_III() {
         assertEquals(RomanNumerals.transform(3), "III");
     }
 
     @Test
-    void number_one_should_return_IV() {
+    void number_fourth_should_return_IV() {
         assertEquals(RomanNumerals.transform(4), "IV");
     }
 }
