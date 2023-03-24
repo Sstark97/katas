@@ -24,4 +24,9 @@ class RomanNumeralsTest {
     void number_fourth_should_return_IV() {
         assertEquals(RomanNumerals.transform(4), "IV");
     }
+
+    @Test
+    void number_five_should_return_V() {
+        assertEquals(RomanNumerals.transform(5), "V");
+    }
 }
