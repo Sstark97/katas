@@ -2,7 +2,7 @@ package org.example;
 
 public class RomanNumerals {
     public static String transform(int number) {
-        String numberInRoman = "I".repeat(number);
-        return number > 3 ? "IV" : numberInRoman;
+        String numberInRoman = number < 4 ? "I".repeat(number) : "IV";
+        return number > 4 ? "V" : numberInRoman;
     }
 }
