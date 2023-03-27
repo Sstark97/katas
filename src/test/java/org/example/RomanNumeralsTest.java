@@ -81,6 +81,11 @@ class RomanNumeralsTest {
     }
 
     @Test
+    void number_three_thousand_should_return_MMM() throws RomamNumberMaximumException {
+        assertEquals(RomanNumerals.transform(3000), "MMM");
+    }
+
+    @Test
     void number_three_thousand_and_one_should_throw_an_exception() {
         var errorMessage = "The maximum roman number is 3000";
         RomamNumberMaximumException capturedException = assertThrows(RomamNumberMaximumException.class, () ->

@@ -30,11 +30,12 @@ public class RomanNumerals {
 
         while (number > 0) {
             var romanEntry = romanList.get(i);
-            i += number < romanEntry.getKey() ? 1 : 0;
 
             if(number >= romanEntry.getKey()) {
                 romanNumber.append(romanEntry.getValue());
                 number -= romanEntry.getKey();
+            } else {
+                i++;
             }
         }
 
