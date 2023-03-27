@@ -10,6 +10,7 @@ public class RomanNumerals {
             9, "IX",
             10, "X",
             40, "XL",
+            49, "IL",
             50, "L",
             90, "XC"
     );
