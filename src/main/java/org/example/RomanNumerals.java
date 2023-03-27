@@ -15,7 +15,8 @@ public class RomanNumerals {
             Map.entry(100, "C"),
             Map.entry(400, "CD"),
             Map.entry(500, "D"),
-            Map.entry(900, "CM")
+            Map.entry(900, "CM"),
+            Map.entry(1000, "M")
     );
 
     public static String transform(int number) {
