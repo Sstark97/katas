@@ -20,13 +20,16 @@ public class RomanNumerals {
 
     public static String transform(int number) {
         var romanIterator = RomanNumerals.roman.entrySet().stream()
-                .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).iterator();
+                .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
         String result = "";
+        int i = 0;
 
         // Iterate over the map
-        while (romanIterator.hasNext()) {
-            var entry = romanIterator.next();
-            while(number >= entry.getKey()) {
+        while (number > 0) {
+            var entry = romanIterator.get(i);
+            i += number < entry.getKey() ? 1 : 0;
+
+            if(number >= entry.getKey()) {
                 // if number is greater than key, print value
                 result += entry.getValue();
                 // subtract key from number
