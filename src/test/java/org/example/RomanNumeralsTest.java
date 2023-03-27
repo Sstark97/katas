@@ -92,4 +92,9 @@ class RomanNumeralsTest {
                 RomanNumerals.transform(3001));
         assertEquals(errorMessage, capturedException.getMessage());
     }
+
+    @Test
+    void check_instance_constructor_throw_an_exception() {
+        assertThrows(UnsupportedOperationException.class, RomanNumerals::new);
+    }
 }
