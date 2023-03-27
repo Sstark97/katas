@@ -9,7 +9,7 @@ public class RomanNumerals {
             5, "V",
             9, "IX",
             10, "X",
-            40, "XD"
+            40, "XL"
     );
     public static void main (String[] args) {
         int number = 50;

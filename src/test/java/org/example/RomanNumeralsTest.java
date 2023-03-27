@@ -36,7 +36,12 @@ class RomanNumeralsTest {
     }
 
     @Test
-    void number_fourty_should_return_XD() {
-        assertEquals(RomanNumerals.transform(40), "XD");
+    void number_fourty_should_return_XL() {
+        assertEquals(RomanNumerals.transform(40), "XL");
+    }
+
+    @Test
+    void number_fivety_should_return_L() {
+        assertEquals(RomanNumerals.transform(50), "L");
     }
 }
