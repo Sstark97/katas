@@ -1,8 +1,10 @@
 package org.example;
 
+import java.util.List;
 import java.util.Map;
 
 public class RomanNumerals {
+    public static final int ROMAN_MAX_NUMBER = 3000;
     static Map<Integer, String> roman = Map.ofEntries(
             Map.entry(1, "I"),
             Map.entry(4, "IV"),
@@ -20,25 +22,33 @@ public class RomanNumerals {
     );
 
     public static String transform(int number) throws RomamNumberMaximumException {
-        if(number > 3000 ) {
-            throw new RomamNumberMaximumException("The maximum roman number is 3000");
-        }
-        var romanList = RomanNumerals.roman.entrySet().stream()
-                .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
-        StringBuilder result = new StringBuilder();
+        checkThatIsAValid(number);
+
+        var romanList = transformRomanMapIntoList();
+        StringBuilder romanNumber = new StringBuilder();
         int i = 0;
 
-        // Iterate over the map
         while (number > 0) {
             var romanEntry = romanList.get(i);
             i += number < romanEntry.getKey() ? 1 : 0;
 
             if(number >= romanEntry.getKey()) {
-                result.append(romanEntry.getValue());
+                romanNumber.append(romanEntry.getValue());
                 number -= romanEntry.getKey();
             }
         }
 
-        return result.toString();
+        return romanNumber.toString();
+    }
+
+    private static void checkThatIsAValid(int number) throws RomamNumberMaximumException {
+        if(number > ROMAN_MAX_NUMBER) {
+            throw new RomamNumberMaximumException("The maximum roman number is 3000");
+        }
+    }
+
+    private static List<Map.Entry<Integer, String>> transformRomanMapIntoList() {
+        return RomanNumerals.roman.entrySet().stream()
+                .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
     }
 }
