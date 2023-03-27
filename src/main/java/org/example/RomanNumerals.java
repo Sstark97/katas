@@ -8,19 +8,13 @@ public class RomanNumerals {
             4, "IV",
             5, "V",
             9, "IX",
-            10, "X"
+            10, "X",
+            40, "XD"
     );
     public static void main (String[] args) {
-        Map<Integer, String> roman = Map.of(
-                1, "I",
-                4, "IV",
-                5, "V",
-                9, "IX",
-                10, "X"
-        );
-        int number = 40;
+        int number = 50;
 
-        var test = roman.entrySet().stream()
+        var test = RomanNumerals.roman.entrySet().stream()
                 .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).iterator();
 
         // Iterate over the map
