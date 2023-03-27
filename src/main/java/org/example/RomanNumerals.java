@@ -10,7 +10,6 @@ public class RomanNumerals {
             Map.entry(9, "IX"),
             Map.entry(10, "X"),
             Map.entry(40, "XL"),
-            Map.entry(49, "IL"),
             Map.entry(50, "L"),
             Map.entry(90, "XC"),
             Map.entry(100, "C"),
