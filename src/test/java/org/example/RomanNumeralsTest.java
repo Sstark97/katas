@@ -52,6 +52,11 @@ class RomanNumeralsTest {
 
     @Test
     void number_ninety_should_return_XC() {
-        assertEquals(RomanNumerals.transform(90), "XC");
+        assertEquals(RomanNumerals.transform(99), "XCIX");
+    }
+
+    @Test
+    void number_one_hundred_should_return_C() {
+        assertEquals(RomanNumerals.transform(100), "C");
     }
 }
