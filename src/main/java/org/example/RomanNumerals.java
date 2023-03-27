@@ -19,24 +19,22 @@ public class RomanNumerals {
     );
 
     public static String transform(int number) {
-        var romanIterator = RomanNumerals.roman.entrySet().stream()
+        var romanList = RomanNumerals.roman.entrySet().stream()
                 .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
-        String result = "";
+        StringBuilder result = new StringBuilder();
         int i = 0;
 
         // Iterate over the map
         while (number > 0) {
-            var entry = romanIterator.get(i);
-            i += number < entry.getKey() ? 1 : 0;
+            var romanEntry = romanList.get(i);
+            i += number < romanEntry.getKey() ? 1 : 0;
 
-            if(number >= entry.getKey()) {
-                // if number is greater than key, print value
-                result += entry.getValue();
-                // subtract key from number
-                number -= entry.getKey();
+            if(number >= romanEntry.getKey()) {
+                result.append(romanEntry.getValue());
+                number -= romanEntry.getKey();
             }
         }
 
-        return result;
+        return result.toString();
     }
 }
