@@ -3,17 +3,17 @@ package org.example;
 import java.util.Map;
 
 public class RomanNumerals {
-    static Map<Integer, String> roman = Map.of(
-            1, "I",
-            4, "IV",
-            5, "V",
-            9, "IX",
-            10, "X",
-            40, "XL",
-            49, "IL",
-            50, "L",
-            90, "XC",
-            100, "C"
+    static Map<Integer, String> roman = Map.ofEntries(
+            Map.entry(1, "I"),
+            Map.entry(4, "IV"),
+            Map.entry(5, "V"),
+            Map.entry(9, "IX"),
+            Map.entry(10, "X"),
+            Map.entry(40, "XL"),
+            Map.entry(49, "IL"),
+            Map.entry(50, "L"),
+            Map.entry(90, "XC"),
+            Map.entry(100, "C")
     );
 
     public static String transform(int number) {
