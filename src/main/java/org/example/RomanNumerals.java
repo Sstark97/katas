@@ -19,8 +19,10 @@ public class RomanNumerals {
             Map.entry(1000, "M")
     );
 
-    public static String transform(int number) {
-        if(number >)
+    public static String transform(int number) throws RomamNumberMaximumException {
+        if(number > 3000 ) {
+            throw new RomamNumberMaximumException("The maximum roman number is 3000");
+        }
         var romanList = RomanNumerals.roman.entrySet().stream()
                 .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
         StringBuilder result = new StringBuilder();
