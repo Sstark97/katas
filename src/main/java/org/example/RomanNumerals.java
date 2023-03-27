@@ -21,6 +21,10 @@ public class RomanNumerals {
             Map.entry(1000, "M")
     );
 
+    public RomanNumerals() {
+        throw new UnsupportedOperationException();
+    }
+
     public static String transform(int number) throws RomamNumberMaximumException {
         checkThatIsAValid(number);
 
