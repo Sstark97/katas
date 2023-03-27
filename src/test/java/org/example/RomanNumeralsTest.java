@@ -74,4 +74,9 @@ class RomanNumeralsTest {
     void number_nine_hundred_should_return_CM() {
         assertEquals(RomanNumerals.transform(900), "CM");
     }
+
+    @Test
+    void number_one_thousand_should_return_M() {
+        assertEquals(RomanNumerals.transform(1000), "M");
+    }
 }
