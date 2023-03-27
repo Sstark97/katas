@@ -36,17 +36,22 @@ class RomanNumeralsTest {
     }
 
     @Test
-    void number_fourty_should_return_XL() {
+    void number_forty_should_return_XL() {
         assertEquals(RomanNumerals.transform(40), "XL");
     }
 
     @Test
-    void number_fourty_nine_should_return_IL() {
+    void number_forty_nine_should_return_IL() {
         assertEquals(RomanNumerals.transform(49), "IL");
     }
 
     @Test
-    void number_fivety_should_return_L() {
+    void number_fifty_should_return_L() {
         assertEquals(RomanNumerals.transform(50), "L");
+    }
+
+    @Test
+    void number_ninety_should_return_XC() {
+        assertEquals(RomanNumerals.transform(90), "XC");
     }
 }

@@ -11,8 +11,7 @@ public class RomanNumerals {
             10, "X",
             40, "XL",
             49, "IL",
-            50, "L",
-            90, "XC"
+            50, "L"
     );
 
     public static String transform(int number) {
