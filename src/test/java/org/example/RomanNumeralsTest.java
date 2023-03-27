@@ -81,7 +81,7 @@ class RomanNumeralsTest {
     }
 
     @Test
-    void number_three_thousand_should_throw_an_exception() {
-        assertThrows(RomamNumberMaximumException.class, () -> RomanNumerals.transform(3000));
+    void number_three_thousand_and_one_should_throw_an_exception() {
+        assertThrows(RomamNumberMaximumException.class, () -> RomanNumerals.transform(3001));
     }
 }

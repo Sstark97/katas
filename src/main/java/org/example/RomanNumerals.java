@@ -20,6 +20,7 @@ public class RomanNumerals {
     );
 
     public static String transform(int number) {
+        if(number >)
         var romanList = RomanNumerals.roman.entrySet().stream()
                 .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).toList();
         StringBuilder result = new StringBuilder();
