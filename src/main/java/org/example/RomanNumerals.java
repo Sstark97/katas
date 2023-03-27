@@ -18,7 +18,7 @@ public class RomanNumerals {
                 9, "IX",
                 10, "X"
         );
-        int number = 49;
+        int number = 40;
 
         var test = roman.entrySet().stream()
                 .sorted(Map.Entry.<Integer, String>comparingByKey().reversed()).iterator();
