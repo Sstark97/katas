@@ -64,4 +64,9 @@ class RomanNumeralsTest {
     void number_fourth_hundred_should_return_CD() {
         assertEquals(RomanNumerals.transform(400), "CD");
     }
+
+    @Test
+    void number_five_hundred_should_return_D() {
+        assertEquals(RomanNumerals.transform(500), "D");
+    }
 }

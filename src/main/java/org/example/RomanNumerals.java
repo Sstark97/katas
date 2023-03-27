@@ -13,7 +13,8 @@ public class RomanNumerals {
             Map.entry(49, "IL"),
             Map.entry(50, "L"),
             Map.entry(90, "XC"),
-            Map.entry(100, "C")
+            Map.entry(100, "C"),
+            Map.entry(400, "CD")
     );
 
     public static String transform(int number) {
