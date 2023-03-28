@@ -4,13 +4,21 @@ export class UserService {
     constructor(private readonly userRepository: UserRepository) {}
 
     save(email: string) {
-        if (email !== "") {
+        const isEmailNotEmpty = email !== ""
+        const notHaveEmailFormat = this.checkCorrectFormOf(email)
+
+        if (isEmailNotEmpty) {
             this.userRepository.save(email)
         }
 
-        if (email && !email.match(/^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/)) {
+        if (notHaveEmailFormat) {
             throw new Error(`${email} not have the email format`)
         }
+    }
+
+    private checkCorrectFormOf(email: string) {
+        const emailFormat = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
+        return email && !email.match(emailFormat)
     }
 
     getUsers() {
