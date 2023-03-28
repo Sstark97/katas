@@ -1,5 +1,9 @@
+import { FakeDataBase } from "../core/fake-data.base";
+
 describe("Sign-up", () => {
-    it("testing sign-up", () => {
-        expect(2 - 2).toBe(0)
+    it("not add user if email it´s empty", () => {
+        const database = new FakeDataBase()
+
+        expect(database.save("")).toHaveBeenCalled()
     })
 })
