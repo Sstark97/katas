@@ -1,4 +1,5 @@
-import { FakeDataBase, UserService } from "../core/FakeDataBase"
+import { FakeDataBase } from "../core/FakeDataBase"
+import {UserService} from "../core/UserService";
 
 describe("Sign-up", () => {
     it("not add user if email it´s empty", () => {

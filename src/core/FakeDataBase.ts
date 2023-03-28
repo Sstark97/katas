@@ -1,7 +1,4 @@
-interface UserRepository {
-    save(email: string): void
-    getUsers(): string[]
-}
+import { UserRepository } from "@core/UserRepository";
 
 export class FakeDataBase implements UserRepository {
     private users: string[] = []
@@ -11,18 +8,5 @@ export class FakeDataBase implements UserRepository {
 
     getUsers() {
         return this.users
-    }
-}
-
-export class UserService {
-    constructor(private readonly userRepository: UserRepository) {}
-    save(email: string) {
-        if(email !== "") {
-            this.userRepository.save(email)
-        }
-    }
-
-    getUsers() {
-        return this.userRepository.getUsers()
     }
 }
