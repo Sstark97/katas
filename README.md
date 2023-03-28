@@ -20,3 +20,9 @@ receiving user information (email, for example), validating it (”Is it a valid
 database. Keep in mind all the SOLID principles.
 
 Once it’s done, we will add one additional validation: What happens when the user already exists in the system?
+
+## Features
+- "" -> []
+- "example@gmail.com" -> 'success message'
+- "example@email" -> ["example@email"]
+- ["example@gmail.com"], "example@gmail.com" -> "error that email already exits"
