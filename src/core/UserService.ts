@@ -3,25 +3,25 @@ import { UserRepository } from "@core/UserRepository";
 export class UserService {
     constructor(private readonly userRepository: UserRepository) {}
 
-    save(email: string) {
+    saveUserInRepository(email: string) {
         const isEmailNotEmpty = email !== ""
-        const notHaveEmailFormat = this.checkCorrectFormOf(email)
+        this.checkCorrectFormOf(email)
 
         if (isEmailNotEmpty) {
             this.userRepository.save(email)
         }
+    }
+
+    private checkCorrectFormOf(email: string) {
+        const emailFormat = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
+        const notHaveEmailFormat = email && !email.match(emailFormat)
 
         if (notHaveEmailFormat) {
             throw new Error(`${email} not have the email format`)
         }
     }
 
-    private checkCorrectFormOf(email: string) {
-        const emailFormat = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/
-        return email && !email.match(emailFormat)
-    }
-
-    getUsers() {
+    getUsersFromRepository() {
         return this.userRepository.getUsers()
     }
 }
