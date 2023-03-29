@@ -2,10 +2,17 @@ import { FakeDataBase } from "../core/FakeDataBase"
 import {UserService} from "../core/UserService";
 
 describe("Sign-up", () => {
+    let fakeDb
+    let service
+    let spy
+
+    beforeEach(() => {
+        fakeDb = new FakeDataBase()
+        service = new UserService(fakeDb)
+        spy = jest.spyOn(service, "saveUserInRepository")
+    })
+
     it("not add user if email it´s empty", () => {
-        const fakeDb = new FakeDataBase()
-        const service = new UserService(fakeDb)
-        const spy = jest.spyOn(service, "saveUserInRepository");
         service.saveUserInRepository("")
 
         const users = service.getUsersFromRepository()
@@ -15,9 +22,6 @@ describe("Sign-up", () => {
     })
 
     it("throws an error message if email not have the correct format", () => {
-        const fakeDb = new FakeDataBase()
-        const service = new UserService(fakeDb)
-        const spy = jest.spyOn(service, "saveUserInRepository")
         const email = "notAnEmail.com"
 
         expect(() => service.saveUserInRepository(email)).toThrow(`${email} not have the email format`)
@@ -25,9 +29,6 @@ describe("Sign-up", () => {
     })
 
     it("save user in repository if email have the correct format", () => {
-        const fakeDb = new FakeDataBase()
-        const service = new UserService(fakeDb)
-        const spy = jest.spyOn(service, "saveUserInRepository")
         const email = "example@email.com"
 
         service.saveUserInRepository(email)
