@@ -26,4 +26,4 @@ Once it’s done, we will add one additional validation: What happens when the u
 - "notAnEmail.com" -> throws an Exception: "notAnEmail.com not have the email format"
 - "example@gmail.com" -> 'success message'
 - "example@email.com" -> ["example@email.com"]
-- ["example@gmail.com"], "example@gmail.com" -> "error that email already exits"
+- ["example@gmail.com"], "example@gmail.com" -> "example@gmail.com already exits"

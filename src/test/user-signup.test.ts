@@ -39,4 +39,13 @@ describe("Sign-up", () => {
         expect(users[0]).toBe(email)
         expect(users.length).toBe(1)
     })
+
+    it("throw an error message if the user already exist in the repository", () => {
+        const email = "example@email.com"
+
+        service.saveUserInRepository(email)
+
+        expect(() => service.saveUserInRepository(email)).toThrow(`${email} already exits`)
+        expect(spy).toHaveBeenCalled()
+    })
 })
