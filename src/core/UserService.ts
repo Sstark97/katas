@@ -7,6 +7,12 @@ export class UserService {
         const isEmailNotEmpty = email !== ""
         this.checkCorrectFormOf(email)
 
+        const users = this.userRepository.getUsers()
+
+        if(users.includes(email)) {
+            throw new Error(`${email} already exits`)
+        }
+
         if (isEmailNotEmpty) {
             this.userRepository.save(email)
         }
