@@ -23,4 +23,19 @@ describe("Sign-up", () => {
         expect(() => service.saveUserInRepository(email)).toThrow(`${email} not have the email format`)
         expect(spy).toHaveBeenCalled()
     })
+
+    it("save user in repository if email have the correct format", () => {
+        const fakeDb = new FakeDataBase()
+        const service = new UserService(fakeDb)
+        const spy = jest.spyOn(service, "saveUserInRepository")
+        const email = "example@email.com"
+
+        service.saveUserInRepository(email)
+
+        const users = service.getUsersFromRepository()
+
+        expect(spy).toHaveBeenCalled()
+        expect(users[0]).toBe(email)
+        expect(users.length).toBe(1)
+    })
 })
