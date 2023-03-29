@@ -1,5 +1,5 @@
 import { FakeDataBase } from "../core/FakeDataBase"
-import {UserService} from "../core/UserService";
+import { UserService } from "../core/UserService";
 
 describe("Sign-up", () => {
     let fakeDb
