@@ -1,5 +1,3 @@
-
-
-fun maxibon () {
-
+fun maxibon (): Int {
+    return 10
 }
