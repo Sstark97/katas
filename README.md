@@ -27,7 +27,7 @@ Karumi developers can consume zero or a positive number of maxibons. The Karumi 
 
 * If the developer is Pedro, he grabs three maxibons.
 * If the developer is Fran, he grabs one maxibon.
-* If the developer is Davide, he does not grab any maxibon.
+* If the developer is David, he does not grab any maxibon.
 * If the developer is Sergio, he grabs two maxibons.
 * If the developer is Jorge, he grabs one maxibon.
 
