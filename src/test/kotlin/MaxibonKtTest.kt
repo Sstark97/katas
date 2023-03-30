@@ -32,4 +32,10 @@ class MaxibonKtTest {
         maxibon.take("Sergio")
         assertEquals(maxibon.getMaxibons(), 8)
     }
+
+    @Test
+    fun `check that there are 9 ice creams when Jorge takes ice creams` () {
+        maxibon.take("Jorge")
+        assertEquals(maxibon.getMaxibons(), 9)
+    }
 }
