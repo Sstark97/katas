@@ -8,6 +8,8 @@ class Maxibon {
     fun take(developer: String) {
         if(developer === "Pedro") {
             this.maxibons -= 3
+        } else if (developer === "Fran") {
+            this.maxibons -= 1
         }
     }
 }
