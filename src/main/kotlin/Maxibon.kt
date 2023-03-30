@@ -1,3 +1,5 @@
-fun maxibon (): Int {
-    return 10
+class Maxibon {
+    fun getMaxibons (): Int {
+        return 10
+    }
 }
