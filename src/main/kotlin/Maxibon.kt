@@ -9,6 +9,7 @@ class Maxibon {
         when (developer) {
             "Pedro" -> this.maxibons -= 3
             "Fran" -> this.maxibons -= 1
+            "Sergio" -> this.maxibons -= 2
         }
     }
 }
