@@ -48,4 +48,17 @@ describe("Sign-up", () => {
         expect(() => service.saveUserInRepository(email)).toThrow(`${email} already exits`)
         expect(spy).toHaveBeenCalled()
     })
+
+    it("save user in repository if email have the correct format wih jest.fn", () => {
+        const email = "example@email.com"
+
+        fakeDb.getUsers = jest.fn().mockReturnValue([email])
+        service.saveUserInRepository(email)
+
+        const users = service.getUsersFromRepository()
+
+        expect(users[0]).toBe(email)
+        expect(users.length).toBe(1)
+    })
+
 })
