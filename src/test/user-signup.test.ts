@@ -53,7 +53,6 @@ describe("Sign-up", () => {
         const email = "example@email.com"
 
         fakeDb.getUsers = jest.fn().mockReturnValue([email])
-        service.saveUserInRepository(email)
 
         const users = service.getUsersFromRepository()
 
