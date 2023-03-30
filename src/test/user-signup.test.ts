@@ -60,4 +60,16 @@ describe("Sign-up", () => {
         expect(users.length).toBe(1)
     })
 
+    it("get a user by email", () => {
+        const email = "example@email.com"
+
+        service.saveUserInRepository(email)
+
+        fakeDb.getUserByEmail = jest.fn(() => email)
+
+        const user = service.getUserByEmail(email)
+
+        expect(user).toBe(email)
+    })
+
 })
