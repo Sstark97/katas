@@ -9,4 +9,8 @@ export class FakeDataBase implements UserRepository {
     getUsers() {
         return this.users
     }
+
+    getUserByEmail(email: string){
+        return email
+    }
 }
