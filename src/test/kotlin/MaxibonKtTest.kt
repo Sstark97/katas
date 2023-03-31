@@ -38,4 +38,11 @@ class MaxibonKtTest {
         maxibon.take("Jorge")
         assertEquals(maxibon.getMaxibons(), 9)
     }
+
+    @Test
+    fun `check that there are 7 ice creams when Sergio and Jorge takes ice creams` () {
+        val developers = listOf("Sergio", "Jorge")
+        maxibon.takeInGroupOf(developers)
+        assertEquals(maxibon.getMaxibons(), 7)
+    }
 }
