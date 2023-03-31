@@ -12,7 +12,11 @@ class Maxibon {
             "Sergio" -> this.maxibons -= 2
         }
 
-        if(this.maxibons <= 2) {
+        checkAmountOfMaxibonsAfterTakenBy(developer)
+    }
+
+    private fun checkAmountOfMaxibonsAfterTakenBy(developer: String) {
+        if (this.maxibons <= 2) {
             this.maxibons += 10
             throw MaxibonLimitException("Hi guys, I'm $developer. We need more maxibons!")
         }
