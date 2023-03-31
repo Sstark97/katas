@@ -12,4 +12,8 @@ class Maxibon {
             "Sergio" -> this.maxibons -= 2
         }
     }
+
+    fun takeInGroupOf(developers: List<String>) {
+        developers.forEach { developer -> this.take(developer) }
+    }
 }
