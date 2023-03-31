@@ -11,6 +11,11 @@ class Maxibon {
             "Fran", "Jorge" -> this.maxibons -= 1
             "Sergio" -> this.maxibons -= 2
         }
+
+        if(this.maxibons <= 2) {
+            this.maxibons += 10
+            throw MaxibonLimitException("Hi guys, I'm $developer. We need more maxibons!")
+        }
     }
 
     fun takeInGroupOf(developers: List<String>) {
