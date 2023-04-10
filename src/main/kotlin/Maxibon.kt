@@ -1,5 +1,3 @@
-data class Developer(val name: String, val maxibonToTake: Int)
-
 class Maxibon(private val slackApi: SlackApi) {
     private var maxibons = 10
     private val LIMIT: Int = 2
