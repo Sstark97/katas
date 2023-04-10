@@ -1,5 +1,4 @@
-class Maxibon(private val slackApi: SlackApi) {
-    private var maxibons = 10
+class Maxibon(private val slackApi: SlackApi, private var maxibons: Int = 10) {
     private val LIMIT: Int = 2
     private val INCREMENT: Int = 10
 
