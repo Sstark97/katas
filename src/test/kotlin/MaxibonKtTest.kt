@@ -55,12 +55,23 @@ class MaxibonKtTest {
     }
 
     @Test
-    fun `Send message with Slack API when ice creams are 2 and then there are 12`() {
+    fun `send message with Slack API when ice creams are 2 and then there are 12`() {
         val developers = listOf("Sergio", "Fran", "Jorge")
         maxibon.takeInGroupOf(developers)
         maxibon.takeInGroupOf(developers)
 
         assertEquals(maxibon.getApiMessage(), "Hi guys, I'm Jorge. We need more maxibons!")
         assertEquals(maxibon.getMaxibons(), 12)
+    }
+
+    @Test
+    fun `check that there are 10 ice creams if the number of maxibons left is lower than the number of maxibons the developer tries to get`() {
+        val firstGroupOfDevelopers = listOf("Pedro", "Sergio", "Jorge")
+        val secondGroupOfDevelopers = listOf("Sergio", "Pedro")
+
+        maxibon.takeInGroupOf(firstGroupOfDevelopers)
+        maxibon.takeInGroupOf(secondGroupOfDevelopers)
+
+        assertEquals(maxibon.getMaxibons(), 10)
     }
 }
