@@ -96,4 +96,10 @@ class MaxibonKtTest {
         val maxibon = Maxibon(slackRepository, 2)
         assertEquals(12, maxibon.getMaxibons())
     }
+
+    @Test
+    fun `check that there are 10 ice creams when started negative numbers` () {
+        val maxibon = Maxibon(slackRepository, -5)
+        assertEquals(10, maxibon.getMaxibons())
+    }
 }
