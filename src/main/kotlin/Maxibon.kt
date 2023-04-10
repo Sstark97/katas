@@ -1,5 +1,5 @@
-class Maxibon {
-    private var maxibons = 10;
+class Maxibon(private val slackApi: SlackApi) {
+    private var maxibons = 10
 
     fun getMaxibons (): Int {
         return this.maxibons
@@ -18,11 +18,15 @@ class Maxibon {
     private fun checkAmountOfMaxibonsAfterTakenBy(developer: String) {
         if (this.maxibons <= 2) {
             this.maxibons += 10
-            throw MaxibonLimitException("Hi guys, I'm $developer. We need more maxibons!")
+            this.slackApi.send("Hi guys, I'm $developer. We need more maxibons!")
         }
     }
 
     fun takeInGroupOf(developers: List<String>) {
         developers.forEach { developer -> this.take(developer) }
+    }
+
+    fun getApiMessage(): String {
+        return this.slackApi.get()
     }
 }
