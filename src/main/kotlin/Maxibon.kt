@@ -1,21 +1,21 @@
+data class Developer(val name: String, val maxibonToTake: Int)
+
 class Maxibon(private val slackApi: SlackApi) {
     private var maxibons = 10
+    private val LIMIT: Int = 2
+    private val INCREMENT: Int = 10
 
     fun getMaxibons (): Int {
         return this.maxibons
     }
 
-    fun take(developer: String) {
-        when (developer) {
-            "Pedro" -> this.maxibons -= if (this.maxibons < 3 ) this.maxibons else 3
-            "Fran", "Jorge" -> this.maxibons -= if (this.maxibons < 1 ) this.maxibons else 1
-            "Sergio" -> this.maxibons -= if (this.maxibons < 2 ) this.maxibons else 2
-        }
+    fun take(developer: Developer) {
+        this.maxibons -= if (this.maxibons < developer.maxibonToTake) this.maxibons else developer.maxibonToTake
 
         checkAmountOfMaxibonsAfterTakenBy(developer)
     }
 
-    fun takeInGroupOf(developers: List<String>) {
+    fun takeInGroupOf(developers: List<Developer>) {
         developers.forEach { developer -> this.take(developer) }
     }
 
@@ -23,10 +23,10 @@ class Maxibon(private val slackApi: SlackApi) {
         return this.slackApi.get()
     }
 
-    private fun checkAmountOfMaxibonsAfterTakenBy(developer: String) {
-        if (this.maxibons <= 2) {
-            this.maxibons += 10
-            this.slackApi.send("Hi guys, I'm $developer. We need more maxibons!")
+    private fun checkAmountOfMaxibonsAfterTakenBy(developer: Developer) {
+        if (this.maxibons <= this.LIMIT) {
+            this.maxibons += this.INCREMENT
+            this.slackApi.send("Hi guys, I'm ${developer.name}. We need more maxibons!")
         }
     }
 }
