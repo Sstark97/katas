@@ -1,5 +1,5 @@
 function templateEngineConverterFrom(chain: string, keysToReplace: {}) {
-    return "";
+    return chain;
 }
 
 describe("Template Engine", () => {
