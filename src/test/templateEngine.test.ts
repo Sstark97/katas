@@ -1,9 +1,9 @@
-function templateEngine(s: string, param2: {}) {
+function templateEngineConverterFrom(chain: string, keysToReplace: {}) {
     return "";
 }
 
 describe("Template Engine", () => {
     it("empty string are allowed", () => {
-        expect(templateEngine("", {})).toBe("")
+        expect(templateEngineConverterFrom("", {})).toBe("")
     })
 })
