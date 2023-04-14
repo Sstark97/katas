@@ -11,6 +11,10 @@ function templateEngineConverterFrom(chain: string, replacements: {}) {
     const [textToReplace, key ] = chain.match(variableToFind)
     const replacementValue = replacements[key]
 
+    if(!replacementValue) {
+        throw new Error("Text doesn´t match replacements keys")
+    }
+
     return chain.replace(textToReplace, replacementValue)
 }
 
@@ -39,6 +43,6 @@ describe("Template Engine", () => {
             notInText: "foo"
         }
 
-        expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("text doesn´t match replacements keys")
+        expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("Text doesn´t match replacements keys")
     })
 })
