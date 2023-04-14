@@ -11,11 +11,11 @@ function templateEngineConverterFrom(chain: string, replacements: {}) {
     const [textToReplace, key ] = chain.match(variableToFind)
     const replacementValue = replacements[key]
 
-    if(!replacementValue) {
-        throw new Error("Text doesn´t match replacements keys")
+    if (replacementValue) {
+        return chain.replace(textToReplace, replacementValue)
     }
 
-    return chain.replace(textToReplace, replacementValue)
+    throw new Error("Text doesn´t match replacements keys")
 }
 
 describe("Template Engine", () => {
