@@ -2,7 +2,11 @@ function areEmptyParameters(chain: string, replacements: {}) {
     return chain === "" || Object.keys(replacements).length === 0;
 }
 
-function templateEngineConverterFrom(chain: string, replacements: {}) {
+interface Replacement {
+    [key: string]: string
+}
+
+function templateEngineConverterFrom(chain: string, replacements: Replacement) {
     if(areEmptyParameters(chain, replacements)) {
         return chain;
     }
@@ -44,5 +48,21 @@ describe("Template Engine", () => {
         }
 
         expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("Text doesn´t match replacements keys")
+    })
+
+    it('multiple keys are allowed', () => {
+        const chain = - "This is a text with a ${variable} to be replaced. \n" +
+            "And this is another text with ${other-variable} to be replaced. \n" +
+            "And this is another text with ${another-variable} to be replaced."
+        const replacements: Replacement =  {
+            variable: "value",
+            otherVariable: "other-value",
+            anotherVariable: "another-value"
+        }
+        const output = "This is a text with a variable to be replaced. " +
+            "And this is another text with other-value to be replaced. " +
+            "And this is another text with another-value to be replaced."
+
+        expect(templateEngineConverterFrom(chain, replacements)).toBe(output)
     })
 })
