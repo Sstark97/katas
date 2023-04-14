@@ -8,6 +8,7 @@ describe("Template Engine", () => {
     })
 
     it("chain is not modified by empty keys", () => {
-        expect(templateEngineConverterFrom("irrelevant text", {})).toBe("irrelevant text")
+        const chain = "irrelevant text"
+        expect(templateEngineConverterFrom(chain, {})).toBe(chain)
     })
 })
