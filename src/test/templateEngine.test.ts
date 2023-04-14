@@ -32,4 +32,13 @@ describe("Template Engine", () => {
 
         expect(templateEngineConverterFrom(chain, replacements)).toBe("This is a template with one foo")
     })
+
+    it("text doesn´t match replacements keys", () => {
+        const chain: string ="This is a template with one ${variable}"
+        const replacements = {
+            notInText: "foo"
+        }
+
+        expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("text doesn´t match replacements keys")
+    })
 })
