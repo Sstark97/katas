@@ -1,5 +1,12 @@
 function templateEngineConverterFrom(chain: string, keysToReplace: {}) {
-    return chain;
+    if(chain === "" || Object.keys(keysToReplace).length === 0) {
+        return chain;
+    }
+
+    const variableToFind = /\$\{(.*?)\}/
+    const keyInChain = chain.match(variableToFind)
+
+    return chain.replace(keyInChain[0], keysToReplace[keyInChain[1]])
 }
 
 describe("Template Engine", () => {
