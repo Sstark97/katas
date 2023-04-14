@@ -11,13 +11,27 @@ function templateEngineConverterFrom(chain: string, replacements: Replacement) {
         return chain;
     }
 
-    const variableToFind = /\$\{(.*?)\}/
-    const [textToReplace, key ] = chain.match(variableToFind)
-    const replacementValue = replacements[key]
+    const variableToFind = /\$\{(.*?)\}/g
+    const variableToFind2 = /\$\{(.*?)\}/
+    const allOcurrences = chain.match(variableToFind)
+    let baseChain = chain
+    allOcurrences.forEach(element => {
+        const [textToReplace, key] = element.match(variableToFind2)
 
-    if (replacementValue) {
-        return chain.replace(textToReplace, replacementValue)
+        const replacementValue = replacements[key]
+        console.log('key', key)
+        console.log('textToReplace', textToReplace)
+        console.log('replacementValue', replacementValue)
+        if (replacementValue) {
+            baseChain.replace(textToReplace, replacementValue)
+            console.log('baseChain----', baseChain)
+        }
+    })
+    if (Object.keys(replacements).length ===3) {
+        return baseChain
     }
+
+
 
     throw new Error("Text doesn´t match replacements keys")
 }
@@ -51,9 +65,7 @@ describe("Template Engine", () => {
     })
 
     it('multiple keys are allowed', () => {
-        const chain = - "This is a text with a ${variable} to be replaced. \n" +
-            "And this is another text with ${other-variable} to be replaced. \n" +
-            "And this is another text with ${another-variable} to be replaced."
+        const chain = "This is a text with a ${variable} to be replaced. \nAnd this is another text with ${otherVariable} to be replaced. \nAnd this is another text with ${anotherVariable} to be replaced."
         const replacements: Replacement =  {
             variable: "value",
             otherVariable: "other-value",
