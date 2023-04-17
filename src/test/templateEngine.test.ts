@@ -1,36 +1,5 @@
-function areEmptyParameters(chain: string, replacements: {}) {
-    return chain === "" || Object.keys(replacements).length === 0;
-}
-
-interface Replacement {
-    [key: string]: string
-}
-
-function templateEngineConverterFrom(chain: string, replacements: Replacement) {
-    if(areEmptyParameters(chain, replacements)) {
-        return chain;
-    }
-
-    const variableToFind = /\$\{(.*?)}/g
-    const variableToFind2 = /\$\{(.*?)}/
-    const allOcurrences = chain.match(variableToFind)
-    let baseChain = ""
-    allOcurrences.forEach(element => {
-        const [textToReplace, key] = element.match(variableToFind2)
-        const replacementValue = replacements[key]
-
-        if (replacementValue) {
-            baseChain = chain.replace(textToReplace, replacementValue)
-            chain = baseChain
-        }
-    })
-
-    if (Object.keys(replacements).length ===3) {
-        return baseChain
-    }
-
-    throw new Error("Text doesn´t match replacements keys")
-}
+import {templateEngineConverterFrom} from "../core/templateEngine"
+import type { Replacement } from "../core/Replacement"
 
 describe("Template Engine", () => {
     it("empty string are allowed", () => {
@@ -51,13 +20,13 @@ describe("Template Engine", () => {
         expect(templateEngineConverterFrom(chain, replacements)).toBe("This is a template with one foo")
     })
 
-    it("text doesn´t match replacements keys", () => {
+    it("text doesn't match replacements keys", () => {
         const chain: string ="This is a template with one ${variable}"
         const replacements = {
             notInText: "foo"
         }
 
-        expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("Text doesn´t match replacements keys")
+        expect(() => templateEngineConverterFrom(chain, replacements)).toThrow("Text doesn't match replacements keys")
     })
 
     it('multiple keys are allowed', () => {
