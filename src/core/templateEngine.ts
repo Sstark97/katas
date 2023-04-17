@@ -1,7 +1,7 @@
 import type { Replacement } from "./Replacement"
 
-function areEmptyParameters(chain: string, replacements: Replacement) {
-    return chain === "" || Object.keys(replacements).length === 0
+function areEmptyParameters(text: string, replacements: Replacement) {
+    return text === "" || Object.keys(replacements).length === 0
 }
 
 function extractAppearanceInfoFrom(currentElement: string) {
@@ -10,16 +10,16 @@ function extractAppearanceInfoFrom(currentElement: string) {
     return { textToReplace, key }
 }
 
-function toReplacedChain(currentElement: string, replacements: Replacement, chain: string) {
+function toReplacedText(currentElement: string, replacements: Replacement, text: string) {
     const { textToReplace, key} = extractAppearanceInfoFrom(currentElement)
     const replacementValue = replacements[key]
 
-    return chain.replace(textToReplace, replacementValue)
+    return text.replace(textToReplace, replacementValue)
 }
 
-function extractAllAppearancesFrom(chain: string) {
+function extractAllAppearancesFrom(text: string) {
     const findAllAppearances = /\$\{(.*?)}/g
-    return chain.match(findAllAppearances)
+    return text.match(findAllAppearances)
 }
 
 function textMatchWith(replacements: Replacement, allAppearances: RegExpMatchArray) {
@@ -31,15 +31,15 @@ function textMatchWith(replacements: Replacement, allAppearances: RegExpMatchArr
     return Object.keys(replacements).length === allAppearances.length && allAppearancesMatch
 }
 
-export function templateEngineConverterFrom(chain: string, replacements: Replacement) {
-    if (areEmptyParameters(chain, replacements)) {
-        return chain
+export function templateEngineConverterFrom(text: string, replacements: Replacement) {
+    if (areEmptyParameters(text, replacements)) {
+        return text
     }
 
-    const allAppearances = extractAllAppearancesFrom(chain)
+    const allAppearances = extractAllAppearancesFrom(text)
     if (textMatchWith(replacements, allAppearances)) {
         return allAppearances.reduce((previousElement, currentElement) => (
-            chain = toReplacedChain(currentElement, replacements, chain)
+            text = toReplacedText(currentElement, replacements, text)
         ), "")
     }
 
