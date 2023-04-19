@@ -4,10 +4,10 @@ import kotlin.test.assertFailsWith
 
 class RoverTest {
 
-    private val curiosity: Rover = Rover(
-        Position(0, 0),
-        DIRECTION.NORTH
-    )
+    private val startPosition = Position(0, 0)
+    private val startDirection = DIRECTION.NORTH
+
+    private val curiosity: Rover = Rover(startPosition, startDirection)
 
     @Test
     fun `check if there is any command`() {
