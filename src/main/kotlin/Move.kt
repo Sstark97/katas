@@ -1,3 +1,3 @@
-enum class Move {
+enum class MOVE {
     FORWARD, BACKWARD
 }
