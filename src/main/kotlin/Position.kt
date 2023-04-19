@@ -1,6 +1,10 @@
 class Position(private val x: Int, private val y: Int) {
+    private val MIN: Int = 0
+    
     init {
-        if (this.x < 0 || this.y < 0) {
+        val isNegativeInPosX = this.x < 0
+        val isNegativeInPosY = this.y < 0
+        if (isNegativeInPosX || isNegativeInPosY) {
             throw PositionOutOfBoundsException("Negative position not allowed")
         }
     }
