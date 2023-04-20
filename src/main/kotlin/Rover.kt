@@ -4,12 +4,20 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
             throw NotCommandException("Any command received")
         }
 
-        when {
-            commands[0] == MOVE.FORWARD && this.direction == DIRECTION.NORTH -> {
-                this.position.moveVertically(-1)
-            }
-            commands[0] == TURN.LEFT -> {
-                this.direction = DIRECTION.WEST
+        commands.forEach { movement ->
+            when {
+                movement == MOVE.FORWARD && this.direction == DIRECTION.NORTH -> {
+                    this.position.moveVertically(-1)
+                }
+                movement == MOVE.BACKWARD && this.direction == DIRECTION.NORTH -> {
+                    this.position.moveVertically(1)
+                }
+                movement == TURN.LEFT -> {
+                    this.direction = DIRECTION.WEST
+                }
+                movement == TURN.RIGHT -> {
+                    this.direction = DIRECTION.EAST
+                }
             }
         }
     }
