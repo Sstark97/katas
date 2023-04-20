@@ -1,3 +1,3 @@
-enum class TURN {
+enum class TURN : Movement {
     LEFT, RIGHT
 }
