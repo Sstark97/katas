@@ -1,4 +1,4 @@
-class Rover(private val position: Position, private val direction: DIRECTION) {
+class Rover(private val position: Position, private var direction: DIRECTION) {
     fun followThisOrders(commands: List<Movement>) {
         if (commands.isEmpty()) {
             throw NotCommandException("Any command received")
@@ -6,10 +6,16 @@ class Rover(private val position: Position, private val direction: DIRECTION) {
 
         if(commands[0] == MOVE.FORWARD && this.direction == DIRECTION.NORTH) {
             this.position.moveVertically(-1)
+        } else if(commands[0] == TURN.LEFT) {
+            this.direction = DIRECTION.WEST
         }
     }
 
     fun getCurrentPosition(): Position {
         return this.position
+    }
+
+    fun getCurrentDirection(): DIRECTION {
+        return this.direction
     }
 }
