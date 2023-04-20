@@ -28,20 +28,25 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
         return this.direction
     }
 
-    fun nextDirectionToFace(command: TURN): DIRECTION {
-        val cardinalPoints = listOf(DIRECTION.NORTH, DIRECTION.EAST, DIRECTION.SOUTH, DIRECTION.WEST)
+    private fun nextDirectionToFace(command: TURN): DIRECTION {
+        val cardinalPoints = listOf(
+            DIRECTION.NORTH,
+            DIRECTION.EAST,
+            DIRECTION.SOUTH,
+            DIRECTION.WEST
+        )
         val currentPoint = cardinalPoints.indexOf(this.direction)
+        val isLastPosition = currentPoint == cardinalPoints.size - 1
+        val isFirstPosition = currentPoint == 0
 
-        if(command == TURN.RIGHT){
-            if (currentPoint == 3) {
-                return cardinalPoints.first()
+        return when (command) {
+            TURN.RIGHT -> {
+                if (isLastPosition) cardinalPoints.first() else cardinalPoints[currentPoint + 1]
             }
-            return cardinalPoints[currentPoint + 1]
-        } else {
-            if(currentPoint == 0) {
-                return  cardinalPoints.last()
+
+            else -> {
+                if(isFirstPosition) cardinalPoints.last() else cardinalPoints[currentPoint - 1]
             }
-            return cardinalPoints[currentPoint - 1]
         }
     }
 }
