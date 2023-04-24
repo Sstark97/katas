@@ -2,8 +2,8 @@ class Position(private var row: Int, private var col: Int) {
     private val MIN: Int = 0
     
     init {
-        val isNegativeInPosX = this.row < 0
-        val isNegativeInPosY = this.col < 0
+        val isNegativeInPosX = this.row < this.MIN
+        val isNegativeInPosY = this.col < this.MIN
         if (isNegativeInPosX || isNegativeInPosY) {
             throw PositionOutOfBoundsException("Negative position not allowed")
         }
