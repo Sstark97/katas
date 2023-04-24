@@ -1,20 +1,20 @@
-class Position(private var x: Int, private var y: Int) {
+class Position(private var row: Int, private var col: Int) {
     private val MIN: Int = 0
     
     init {
-        val isNegativeInPosX = this.x < 0
-        val isNegativeInPosY = this.y < 0
+        val isNegativeInPosX = this.row < 0
+        val isNegativeInPosY = this.col < 0
         if (isNegativeInPosX || isNegativeInPosY) {
             throw PositionOutOfBoundsException("Negative position not allowed")
         }
     }
 
     fun moveVertically(position: Int) {
-        this.x += position
+        this.row += position
     }
 
     override fun toString(): String {
-        return "Position(x=$x, y=$y)"
+        return "Position(row=$row, col=$col)"
     }
 
     override fun equals(other: Any?): Boolean {
@@ -23,13 +23,13 @@ class Position(private var x: Int, private var y: Int) {
 
         other as Position
 
-        if (x != other.x) return false
-        return y == other.y
+        if (row != other.row) return false
+        return col == other.col
     }
 
     override fun hashCode(): Int {
-        var result = x
-        result = 31 * result + y
+        var result = row
+        result = 31 * result + col
         return result
     }
 
