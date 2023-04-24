@@ -12,7 +12,9 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
                 movement == MOVE.BACKWARD && this.direction == DIRECTION.NORTH -> {
                     this.position.moveVertically(1)
                 }
-
+                movement == MOVE.FORWARD && this.direction == DIRECTION.WEST -> {
+                    this.position.moveHorizontally(-1)
+                }
                 movement is TURN -> {
                     this.direction = nextDirectionToFace(movement)
                 }

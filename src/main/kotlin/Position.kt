@@ -13,6 +13,10 @@ class Position(private var row: Int, private var col: Int) {
         this.row += position
     }
 
+    fun moveHorizontally(position: Int) {
+        this.col += position
+    }
+
     override fun toString(): String {
         return "Position(row=$row, col=$col)"
     }
