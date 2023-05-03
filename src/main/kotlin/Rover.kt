@@ -1,5 +1,5 @@
 class Rover(private val position: Position, private var direction: DIRECTION) {
-    fun followThisOrders(commands: List<Movement>) {
+    fun followTheseOrders(commands: List<Movement>) {
         if (commands.isEmpty()) {
             throw NotCommandException("Any command received")
         }

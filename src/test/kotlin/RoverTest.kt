@@ -12,7 +12,7 @@ class RoverTest {
     @Test
     fun `check if there is any command`() {
         val exception = assertFailsWith<NotCommandException>(
-            block = { curiosity.followThisOrders(listOf()) }
+            block = { curiosity.followTheseOrders(listOf()) }
         )
         assertEquals(exception.message, "Any command received")
     }
@@ -20,7 +20,7 @@ class RoverTest {
     @Test
     fun `check if curiosity moves correctly with one command`(){
         val commands = listOf(MOVE.FORWARD)
-        curiosity.followThisOrders(commands)
+        curiosity.followTheseOrders(commands)
 
         assertEquals(Position(0,1), curiosity.getCurrentPosition())
     }
@@ -28,7 +28,7 @@ class RoverTest {
     @Test
     fun `check if curiosity turns correctly with one command`(){
         val commands = listOf(TURN.LEFT)
-        curiosity.followThisOrders(commands)
+        curiosity.followTheseOrders(commands)
 
         assertEquals(DIRECTION.WEST, curiosity.getCurrentDirection())
     }
@@ -36,7 +36,7 @@ class RoverTest {
     @Test
     fun `check if curiosity moves and turns correctly`(){
         val commands = listOf(MOVE.BACKWARD, TURN.RIGHT)
-        curiosity.followThisOrders(commands)
+        curiosity.followTheseOrders(commands)
 
         assertEquals(Position(2,1), curiosity.getCurrentPosition())
         assertEquals(DIRECTION.EAST, curiosity.getCurrentDirection())
@@ -45,7 +45,7 @@ class RoverTest {
     @Test
     fun `check if curiosity moves, turns and moves correctly`() {
         val commands = listOf(MOVE.FORWARD, TURN.LEFT, MOVE.FORWARD)
-        curiosity.followThisOrders(commands)
+        curiosity.followTheseOrders(commands)
 
         assertEquals(Position(0,0), curiosity.getCurrentPosition())
         assertEquals(DIRECTION.WEST, curiosity.getCurrentDirection())
