@@ -8,6 +8,6 @@ class PlanetTest {
         val exception = assertFailsWith<DimensionOutOfBoundsException>(
             block = { Planet(-1, -1) }
         )
-        assertEquals(exception.message, "Negative position not allowed")
+        assertEquals(exception.message, "Negative dimension not allowed")
     }
 }
