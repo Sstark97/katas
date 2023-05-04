@@ -1,7 +1,8 @@
-class Rover(private val position: Position, private var direction: DIRECTION) {
+class Rover(private val position: Position, private var direction: DIRECTION, private val surface: Planet) {
     fun followTheseOrders(commands: List<Movement>) {
         if (commands.isEmpty()) {
             throw NotCommandException("Any command received")
+
         }
         commands.forEach { movement ->
             when (movement) {
@@ -26,7 +27,10 @@ class Rover(private val position: Position, private var direction: DIRECTION) {
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         if (isMovingForward) {
-            if (isFacingNorthOrWest) movePosition(-1) else movePosition(1)
+            val maxLatitude = this.surface.latitude - 1
+            val isInAndFacingNorthLimit = (this.position.getVertical() == 0 || this.position.getVertical() == maxLatitude) && isFacingVertically
+            val toNewPosition = if(isInAndFacingNorthLimit) -(maxLatitude) else 1
+            if (isFacingNorthOrWest) movePosition(-toNewPosition) else movePosition(toNewPosition)
         } else {
             if (isFacingNorthOrWest) movePosition(1) else movePosition(-1)
         }

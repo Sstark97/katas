@@ -6,8 +6,9 @@ class RoverTest {
 
     private val startPosition = Position(1, 1)
     private val startDirection = DIRECTION.NORTH
+    private val mars = Planet(3,3)
 
-    private val curiosity: Rover = Rover(startPosition, startDirection)
+    private val curiosity: Rover = Rover(startPosition, startDirection, mars)
 
     @Test
     fun `check if there is any command`() {
@@ -51,4 +52,19 @@ class RoverTest {
         assertEquals(DIRECTION.WEST, curiosity.getCurrentDirection())
     }
 
+    @Test
+    fun `if curiosity moves out of upper limit facing north, it appears on the opposite side`() {
+        val commands = listOf(MOVE.FORWARD, MOVE.FORWARD)
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(2,1), curiosity.getCurrentPosition())
+    }
+
+    @Test
+    fun `if curiosity moves out of lower limit facing south, it appears on the opposite side`() {
+        val commands = listOf(TURN.LEFT, TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD)
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(0,1), curiosity.getCurrentPosition())
+    }
 }

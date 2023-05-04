@@ -1,4 +1,4 @@
-class Planet(private val latitude: Int, private val longitude: Int) {
+class Planet(val latitude: Int, val longitude: Int) {
     private val MIN: Int = 0
 
     init {

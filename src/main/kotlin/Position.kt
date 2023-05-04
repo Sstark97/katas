@@ -17,6 +17,10 @@ class Position(private var row: Int, private var col: Int) {
         this.col += position
     }
 
+    fun getVertical() : Int {
+        return this.row
+    }
+
     override fun toString(): String {
         return "Position(row=$row, col=$col)"
     }
