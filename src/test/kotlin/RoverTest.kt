@@ -51,4 +51,12 @@ class RoverTest {
         assertEquals(DIRECTION.WEST, curiosity.getCurrentDirection())
     }
 
+    @Test
+    fun `if curiosity moves out of upper limit, it appears on the opposite side`() {
+        val commands = listOf(MOVE.FORWARD, MOVE.FORWARD)
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(2,1), curiosity.getCurrentPosition())
+    }
+
 }
