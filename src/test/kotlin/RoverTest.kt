@@ -53,11 +53,18 @@ class RoverTest {
     }
 
     @Test
-    fun `if curiosity moves out of upper limit, it appears on the opposite side`() {
+    fun `if curiosity moves out of upper limit facing north, it appears on the opposite side`() {
         val commands = listOf(MOVE.FORWARD, MOVE.FORWARD)
         curiosity.followTheseOrders(commands)
 
         assertEquals(Position(2,1), curiosity.getCurrentPosition())
     }
 
+    @Test
+    fun `if curiosity moves out of lower limit facing south, it appears on the opposite side`() {
+        val commands = listOf(TURN.LEFT, TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD)
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(0,1), curiosity.getCurrentPosition())
+    }
 }
