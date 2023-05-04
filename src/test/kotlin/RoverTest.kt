@@ -6,8 +6,9 @@ class RoverTest {
 
     private val startPosition = Position(1, 1)
     private val startDirection = DIRECTION.NORTH
+    private val mars = Planet(3,3)
 
-    private val curiosity: Rover = Rover(startPosition, startDirection)
+    private val curiosity: Rover = Rover(startPosition, startDirection, mars)
 
     @Test
     fun `check if there is any command`() {
