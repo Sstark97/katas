@@ -26,7 +26,9 @@ export class Mouse {
         currentTimeInMilliseconds: number
     ) {
         /*... implement this method ...*/
-        this.notifySubscribers(MouseEventType.Drag)
+        if(this.leftButtonPressed) {
+            this.notifySubscribers(MouseEventType.Drag)
+        }
     }
 
     public subscribe(listener: MouseEventListener) {
@@ -39,11 +41,11 @@ export class Mouse {
 }
 
 export enum MouseEventType {
-    SingleClick,
-    DoubleClick,
-    TripleClick,
-    Drag,
-    Drop
+    SingleClick = "SingleClick",
+    DoubleClick = "DoubleClick",
+    TripleClick = "TripleClick",
+    Drag = "Drag",
+    Drop = "Drop"
 }
 export interface MouseEventListener {
     handleMouseEvent(eventType: MouseEventType );
