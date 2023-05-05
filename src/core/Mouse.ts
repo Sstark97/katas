@@ -15,9 +15,12 @@ export class Mouse {
 
     public releaseLeftButton(currentTimeInMilliseconds: number) {
         /*... implement this method ...*/
-        this.leftButtonPressed = false
+        if(this.leftButtonPressed) {
+            this.leftButtonPressed = false
+            this.notifySubscribers(MouseEventType.SingleClick)
+        }
         // It should only notify the following event when position is the same
-        this.notifySubscribers(MouseEventType.SingleClick)
+
     }
 
     public move(
