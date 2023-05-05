@@ -21,6 +21,10 @@ class Position(private var row: Int, private var col: Int) {
         return this.row
     }
 
+    fun getHorizontal() : Int {
+        return this.col
+    }
+
     override fun toString(): String {
         return "Position(row=$row, col=$col)"
     }

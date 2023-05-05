@@ -28,9 +28,13 @@ class Rover(private val position: Position, private var direction: DIRECTION, pr
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         if (isMovingForward) {
             val maxLatitude = this.surface.latitude - 1
-            val isInAndFacingNorthLimit = (this.position.getVertical() == 0 || this.position.getVertical() == maxLatitude) && isFacingVertically
-            val toNewPosition = if(isInAndFacingNorthLimit) -(maxLatitude) else 1
-            if (isFacingNorthOrWest) movePosition(-toNewPosition) else movePosition(toNewPosition)
+            val isInVerticalLimit = (this.position.getVertical() == 0 || this.position.getVertical() == maxLatitude) && isFacingVertically
+
+            val maxLongitude = this.surface.longitude - 1
+            val isInHorizontalLimit = (this.position.getHorizontal() == 0 || this.position.getHorizontal() == maxLongitude) && !isFacingVertically
+            val limitPos = if(isInVerticalLimit) -(maxLatitude) else if(isInHorizontalLimit) -(maxLongitude) else 1
+
+            if (isFacingNorthOrWest) movePosition(-limitPos) else movePosition(limitPos)
         } else {
             if (isFacingNorthOrWest) movePosition(1) else movePosition(-1)
         }
