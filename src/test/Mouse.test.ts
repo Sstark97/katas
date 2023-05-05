@@ -1,4 +1,4 @@
-import {MouseEventType, MouseEventListener, Mouse} from "../core/Mouse"
+import {MouseEventType, MouseEventListener, Mouse, MousePointerCoordinates} from "../core/Mouse"
 
 describe('Mouse', () => {
     it('notifies single click', () => {
@@ -26,5 +26,21 @@ describe('Mouse', () => {
         mouse.releaseLeftButton(time)
 
         expect(mouseEventListener.handleMouseEvent).not.toHaveBeenCalled()
+    })
+
+    it('notifies drag', () => {
+        const mouse = new Mouse()
+        const time = new Date().getTime();
+        const firstCoordinate = new MousePointerCoordinates(0,0)
+        const lastCoordinate = new MousePointerCoordinates(10,10)
+        let mouseEventListener: MouseEventListener = {
+            handleMouseEvent: jest.fn()
+        };
+
+        mouse.subscribe(mouseEventListener)
+        mouse.pressLeftButton(time)
+        mouse.move(firstCoordinate,lastCoordinate,time + 10)
+
+        expect(mouseEventListener.handleMouseEvent).toHaveBeenCalledWith(MouseEventType.Drag)
     })
 })

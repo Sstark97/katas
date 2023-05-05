@@ -1,6 +1,5 @@
-class MousePointerCoordinates {
-    private x: number;
-    private y: number;
+export class MousePointerCoordinates {
+    constructor(private x: number, private y: number) {}
 }
 
 export class Mouse {
