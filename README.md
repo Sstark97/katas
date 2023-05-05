@@ -4,44 +4,52 @@ This kata is part of the book ["Código sostenible"](https://codigosostenible.co
 
 Test-drive the methods missing the implementation:
 
-```java
+```typescript
 
-public class Mouse {
-    private List<MouseEventListener> listeners = new ArrayList<>();
-    private final long timeWindowInMillisecondsForDoubleClick = 500;
+class Mouse {
+    private listeners: MouseEventListener[] = [];
+    private timeWindowInMillisecondsForDoubleClick = 500;
 
-    public void pressLeftButton(long currentTimeInMilliseconds) {
+    public pressLeftButton(currentTimeInMilliseconds: number) {
         /*... implement this method ...*/
     }
 
-    public void releaseLeftButton(long currentTimeInMilliseconds) {
+    public releaseLeftButton(currentTimeInMilliseconds: number) {
         /*... implement this method ...*/
     }
 
-    public void move(MousePointerCoordinates from, MousePointerCoordinates to, long
-            currentTimeInMilliseconds) {
+    public move(
+        from: MousePointerCoordinates,
+        to: MousePointerCoordinates,
+        currentTimeInMilliseconds: number
+    ) {
         /*... implement this method ...*/
     }
 
-    public void subscribe(MouseEventListener listener) {
-        listeners.add(listener);
+    public subscribe(listener: MouseEventListener) {
+        this.listeners.push(listener);
     }
 
-    private void notifySubscribers(MouseEventType eventType) {
-        listeners.forEach(listener -> listener.handleMouseEvent(eventType));
+    private notifySubscribers(eventType: MouseEventType) {
+        this.listeners.forEach((listener) => listener.handleMouseEvent(eventType));
     }
 }
 
 enum MouseEventType {
-    SingleClick,
-    DoubleClick,
-    TripleClick,
-    Drag,
-    Drop
+    SingleClick = "SingleClick",
+    DoubleClick = "DoubleClick",
+    TripleClick = "TripleClick",
+    Drag = "Drag",
+    Drop = "Drop"
 }
 
 interface MouseEventListener {
-    void handleMouseEvent(MouseEventType eventType);
+    handleMouseEvent(eventType: MouseEventType );
+}
+
+class MousePointerCoordinates {
+    private x: number;
+    private y: number;
 }
 
 ```
