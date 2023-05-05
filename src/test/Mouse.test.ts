@@ -31,15 +31,15 @@ describe('Mouse', () => {
     it('notifies drag', () => {
         const mouse = new Mouse()
         const time = new Date().getTime();
-        const firstCoordinate = new MousePointerCoordinates(0,0)
-        const lastCoordinate = new MousePointerCoordinates(10,10)
+        const from = new MousePointerCoordinates(0,0)
+        const to = new MousePointerCoordinates(10,10)
         let mouseEventListener: MouseEventListener = {
             handleMouseEvent: jest.fn()
         };
 
         mouse.subscribe(mouseEventListener)
         mouse.pressLeftButton(time)
-        mouse.move(firstCoordinate,lastCoordinate,time + 10)
+        mouse.move(from,to,time + 10)
 
         expect(mouseEventListener.handleMouseEvent).toHaveBeenCalledWith(MouseEventType.Drag)
     })

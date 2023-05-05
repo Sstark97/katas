@@ -8,12 +8,10 @@ export class Mouse {
     private timeWindowInMillisecondsForDoubleClick = 500;
 
     public pressLeftButton(currentTimeInMilliseconds: number) {
-        /*... implement this method ...*/
         this.leftButtonPressed = true
     }
 
     public releaseLeftButton(currentTimeInMilliseconds: number) {
-        /*... implement this method ...*/
         if(this.leftButtonPressed) {
             this.leftButtonPressed = false
             this.notifySubscribers(MouseEventType.SingleClick)
@@ -28,6 +26,7 @@ export class Mouse {
         currentTimeInMilliseconds: number
     ) {
         /*... implement this method ...*/
+        this.notifySubscribers(MouseEventType.Drag)
     }
 
     public subscribe(listener: MouseEventListener) {
