@@ -34,7 +34,7 @@ class Rover(private val position: Position, private var direction: DIRECTION, pr
         if (isMovingForward) {
             if (isFacingNorthOrWest) movePosition(-steps) else movePosition(steps)
         } else {
-            if (isFacingNorthOrWest) movePosition(1) else movePosition(-steps)
+            if (isFacingNorthOrWest) movePosition(steps) else movePosition(-steps)
         }
     }
 
