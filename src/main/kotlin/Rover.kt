@@ -1,4 +1,7 @@
 class Rover(private val position: Position, private var direction: DIRECTION, private val surface: Planet) {
+    val MAX_LATITUDE = this.surface.latitude - 1
+    val MAX_LONGITUDE = this.surface.longitude - 1
+
     fun followTheseOrders(commands: List<Movement>) {
         if (commands.isEmpty()) {
             throw NotCommandException("Any command received")
@@ -27,18 +30,26 @@ class Rover(private val position: Position, private var direction: DIRECTION, pr
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         if (isMovingForward) {
-            val maxLatitude = this.surface.latitude - 1
-            val isInVerticalLimit = (this.position.getVertical() == 0 || this.position.getVertical() == maxLatitude) && isFacingVertically
+            val steps = stepsToMove(isFacingVertically)
 
-            val maxLongitude = this.surface.longitude - 1
-            val isInHorizontalLimit = (this.position.getHorizontal() == 0 || this.position.getHorizontal() == maxLongitude) && !isFacingVertically
-            val limitPos = if(isInVerticalLimit) -(maxLatitude) else if(isInHorizontalLimit) -(maxLongitude) else 1
-
-            if (isFacingNorthOrWest) movePosition(-limitPos) else movePosition(limitPos)
+            if (isFacingNorthOrWest) movePosition(-steps) else movePosition(steps)
         } else {
             if (isFacingNorthOrWest) movePosition(1) else movePosition(-1)
         }
     }
+
+    private fun stepsToMove(isFacingVertically: Boolean) =
+        if (isInVerticalLimit(isFacingVertically)) -(MAX_LATITUDE)
+        else if (isInHorizontalLimit(isFacingVertically)) -(MAX_LONGITUDE)
+        else 1
+
+    private fun isInHorizontalLimit(isFacingVertically: Boolean) =
+        (this.position.getHorizontal() == 0 || this.position.getHorizontal() == MAX_LONGITUDE) && !isFacingVertically
+
+    private fun isInVerticalLimit(isFacingVertically: Boolean): Boolean {
+        return (position.getVertical() == 0 || position.getVertical() == MAX_LATITUDE) && isFacingVertically
+    }
+
     private fun nextDirectionToFace(command: TURN): DIRECTION {
         val cardinalPoints = listOf(
             DIRECTION.NORTH,
