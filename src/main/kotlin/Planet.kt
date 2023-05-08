@@ -1,4 +1,4 @@
-class Planet(val latitude: Int, val longitude: Int) {
+class Planet(val latitude: Int, val longitude: Int, val obstacles: List<Obstacle>) {
     private val MIN: Int = 0
 
     init {
@@ -7,5 +7,9 @@ class Planet(val latitude: Int, val longitude: Int) {
         if (isNegativeLatitude || isNegativeLongitude) {
             throw DimensionOutOfBoundsException("Negative dimension not allowed")
         }
+    }
+
+    fun haveAnObstacleIn(position: Position): Boolean {
+        return obstacles.any { it.position == position }
     }
 }

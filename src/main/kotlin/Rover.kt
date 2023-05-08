@@ -1,4 +1,4 @@
-class Rover(private val position: Position, private var direction: DIRECTION, private val surface: Planet) {
+class Rover(private var position: Position, private var direction: DIRECTION, private val surface: Planet) {
     val MAX_LATITUDE = this.surface.latitude - 1
     val MAX_LONGITUDE = this.surface.longitude - 1
 
@@ -26,7 +26,8 @@ class Rover(private val position: Position, private var direction: DIRECTION, pr
     }
     private fun nextPosition(movement: MOVE) {
         val isFacingVertically = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.SOUTH
-        val movePosition = if (isFacingVertically) this.position::moveVertically else this.position::moveHorizontally
+        val expectedPosition = this.position.clone()
+        val movePosition = if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         val steps = stepsToMove(isFacingVertically)
@@ -35,6 +36,14 @@ class Rover(private val position: Position, private var direction: DIRECTION, pr
             if (isFacingNorthOrWest) movePosition(-steps) else movePosition(steps)
         } else {
             if (isFacingNorthOrWest) movePosition(steps) else movePosition(-steps)
+        }
+
+        if (surface.haveAnObstacleIn(expectedPosition)) {
+            val verticalPosition = expectedPosition.getVertical()
+            val horizontalPosition = expectedPosition.getHorizontal()
+            throw ObstacleFoundException("Obstacle Found in ($verticalPosition, $horizontalPosition)")
+        } else {
+            this.position = expectedPosition
         }
     }
 

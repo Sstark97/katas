@@ -1,4 +1,4 @@
-class Position(private var row: Int, private var col: Int) {
+class Position(private var row: Int, private var col: Int): Cloneable {
     private val MIN: Int = 0
     
     init {
@@ -45,4 +45,5 @@ class Position(private var row: Int, private var col: Int) {
         return result
     }
 
+    public override fun clone(): Position = super.clone() as Position
 }
