@@ -99,4 +99,16 @@ class RoverTest {
 
         assertEquals(Position(0,1), curiosity.getCurrentPosition())
     }
+
+    @Test
+    fun `if curiosity detects an obstacle, aborts the orders and reports it`() {
+        val commands = listOf(MOVE.FORWARD, TURN.RIGHT, MOVE.FORWARD, MOVE.FORWARD)
+
+        val exception = assertFailsWith<ObstacleFoundException>(
+            block = { curiosity.followTheseOrders(commands) }
+        )
+
+        assertEquals(exception.message, "Obstacle Found in (0, 2)")
+        assertEquals(Position(0,1), curiosity.getCurrentPosition())
+    }
 }
