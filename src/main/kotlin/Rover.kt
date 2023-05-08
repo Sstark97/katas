@@ -26,8 +26,8 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
     }
     private fun nextPosition(movement: MOVE) {
         val isFacingVertically = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.SOUTH
-        val fakePosition = this.position.clone()
-        val movePosition = if (isFacingVertically) fakePosition::moveVertically else fakePosition::moveHorizontally
+        val expectedPosition = this.position.clone()
+        val movePosition = if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         val steps = stepsToMove(isFacingVertically)
@@ -38,10 +38,12 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
             if (isFacingNorthOrWest) movePosition(steps) else movePosition(-steps)
         }
 
-        if (surface.haveAnObstacleIn(fakePosition)) {
-            throw ObstacleFoundException("Obstacle Found in (${fakePosition.getVertical()}, ${fakePosition.getHorizontal()})")
+        if (surface.haveAnObstacleIn(expectedPosition)) {
+            val verticalPosition = expectedPosition.getVertical()
+            val horizontalPosition = expectedPosition.getHorizontal()
+            throw ObstacleFoundException("Obstacle Found in ($verticalPosition, $horizontalPosition)")
         } else {
-            this.position = fakePosition
+            this.position = expectedPosition
         }
     }
 
