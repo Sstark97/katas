@@ -6,7 +6,9 @@ class RoverTest {
 
     private val startPosition = Position(1, 1)
     private val startDirection = DIRECTION.NORTH
-    private val mars = Planet(3,3)
+    private val obstaclePosition = Position(2, 2)
+    private val obstacle = Obstacle(obstaclePosition)
+    private val mars = Planet(3,3, obstacle)
 
     private val curiosity: Rover = Rover(startPosition, startDirection, mars)
 
@@ -102,13 +104,13 @@ class RoverTest {
 
     @Test
     fun `if curiosity detects an obstacle, aborts the orders and reports it`() {
-        val commands = listOf(MOVE.FORWARD, TURN.RIGHT, MOVE.FORWARD, MOVE.FORWARD)
+        val commands = listOf(MOVE.BACKWARD, TURN.RIGHT, MOVE.FORWARD, MOVE.FORWARD)
 
         val exception = assertFailsWith<ObstacleFoundException>(
             block = { curiosity.followTheseOrders(commands) }
         )
 
-        assertEquals(exception.message, "Obstacle Found in (0, 2)")
-        assertEquals(Position(0,1), curiosity.getCurrentPosition())
+        assertEquals(exception.message, "Obstacle Found in (2, 2)")
+        assertEquals(Position(2,1), curiosity.getCurrentPosition())
     }
 }
