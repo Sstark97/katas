@@ -8,10 +8,10 @@ class RoverTest {
     private val startDirection = DIRECTION.NORTH
     private val obstacles = listOf(
         Obstacle(Position(2,2)),
-        Obstacle(Position(0,2)),
-        Obstacle(Position(2,0))
+        Obstacle(Position(0,4)),
+        Obstacle(Position(5,3))
     )
-    private val mars = Planet(3,3, obstacles)
+    private val mars = Planet(6,6, obstacles)
 
     private val curiosity: Rover = Rover(startPosition, startDirection, mars)
 
@@ -62,12 +62,12 @@ class RoverTest {
         val commands = listOf(MOVE.FORWARD, MOVE.FORWARD)
         curiosity.followTheseOrders(commands)
 
-        assertEquals(Position(2,1), curiosity.getCurrentPosition())
+        assertEquals(Position(5,1), curiosity.getCurrentPosition())
     }
 
     @Test
     fun `if curiosity moves out of lower limit facing south, it appears on the opposite side`() {
-        val commands = listOf(TURN.LEFT, TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD)
+        val commands = listOf(TURN.LEFT, TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD)
         curiosity.followTheseOrders(commands)
 
         assertEquals(Position(0,1), curiosity.getCurrentPosition())
@@ -78,12 +78,12 @@ class RoverTest {
         val commands = listOf(TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD)
         curiosity.followTheseOrders(commands)
 
-        assertEquals(Position(1,2), curiosity.getCurrentPosition())
+        assertEquals(Position(1,5), curiosity.getCurrentPosition())
     }
 
     @Test
     fun `if curiosity moves out of right limit facing east, it appears on the opposite side`(){
-        val commands = listOf(TURN.RIGHT, MOVE.FORWARD, MOVE.FORWARD)
+        val commands = listOf(TURN.RIGHT, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD)
         curiosity.followTheseOrders(commands)
 
         assertEquals(Position(1,0), curiosity.getCurrentPosition())
@@ -94,12 +94,12 @@ class RoverTest {
         val commands = listOf(TURN.LEFT, TURN.LEFT, MOVE.BACKWARD, MOVE.BACKWARD)
         curiosity.followTheseOrders(commands)
 
-        assertEquals(Position(2,1), curiosity.getCurrentPosition())
+        assertEquals(Position(5,1), curiosity.getCurrentPosition())
     }
 
     @Test
     fun `if curiosity moves out of lower limit facing north, it appears on the opposite side`() {
-        val commands = listOf(MOVE.BACKWARD, MOVE.BACKWARD)
+        val commands = listOf(MOVE.BACKWARD, MOVE.BACKWARD, MOVE.BACKWARD, MOVE.BACKWARD, MOVE.BACKWARD)
         curiosity.followTheseOrders(commands)
 
         assertEquals(Position(0,1), curiosity.getCurrentPosition())
