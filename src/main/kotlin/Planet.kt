@@ -1,4 +1,4 @@
-class Planet(val latitude: Int, val longitude: Int, val obstacle: Obstacle) {
+class Planet(val latitude: Int, val longitude: Int, val obstacles: List<Obstacle>) {
     private val MIN: Int = 0
 
     init {
@@ -10,6 +10,6 @@ class Planet(val latitude: Int, val longitude: Int, val obstacle: Obstacle) {
     }
 
     fun haveAnObstacleIn(position: Position): Boolean {
-        return obstacle.position == position
+        return obstacles.any { it.position == position }
     }
 }

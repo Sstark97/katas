@@ -6,9 +6,12 @@ class RoverTest {
 
     private val startPosition = Position(1, 1)
     private val startDirection = DIRECTION.NORTH
-    private val obstaclePosition = Position(2, 2)
-    private val obstacle = Obstacle(obstaclePosition)
-    private val mars = Planet(3,3, obstacle)
+    private val obstacles = listOf(
+        Obstacle(Position(2,2)),
+        Obstacle(Position(0,2)),
+        Obstacle(Position(2,0))
+    )
+    private val mars = Planet(3,3, obstacles)
 
     private val curiosity: Rover = Rover(startPosition, startDirection, mars)
 
