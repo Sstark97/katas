@@ -35,7 +35,7 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
             if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
-        val steps = stepsToMove(isFacingVertically, movement)
+        val steps = stepsToMove(movement)
 
         if (isMovingForward) {
             if (isFacingNorthOrWest) movePosition(-steps) else movePosition(steps)
@@ -52,28 +52,30 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
         }
     }
 
-    private fun stepsToMove(isFacingVertically: Boolean, movement: MOVE) =
+    private fun stepsToMove(movement: MOVE) =
         if (isInVerticalLimit(movement)) -(MAX_LATITUDE)
-        else if (isInHorizontalLimit(isFacingVertically, movement)) -(MAX_LONGITUDE)
+        else if (isInHorizontalLimit(movement)) -(MAX_LONGITUDE)
         else 1
 
-    private fun isInHorizontalLimit(isFacingVertically: Boolean, movement: MOVE) =
-        ((this.position.getHorizontal() == 0 &&
-            ((this.direction == DIRECTION.EAST && movement == MOVE.BACKWARD) ||
-            this.direction == DIRECTION.WEST && movement == MOVE.FORWARD))
-        || (this.position.getHorizontal() == MAX_LONGITUDE &&
-            ((this.direction == DIRECTION.WEST && movement == MOVE.BACKWARD) ||
-            (this.direction == DIRECTION.EAST && movement == MOVE.FORWARD)))) && !isFacingVertically
+    private fun isInHorizontalLimit(movement: MOVE) =
+        (this.position.getHorizontal() == 0 && moveOutOfLeftLimit(movement)) ||
+                (this.position.getHorizontal() == MAX_LONGITUDE && moveOutOfRightLimit(movement))
 
-    private fun isInVerticalLimit(movement: MOVE): Boolean {
-        return (position.getVertical() == 0 && moveOutOfUpperLimit(movement)) ||
-                (position.getVertical() == MAX_LATITUDE && moveOutOfLowerLimit(movement))
-    }
+    private fun moveOutOfRightLimit(movement: MOVE) =
+        this.direction == DIRECTION.WEST && movement == MOVE.BACKWARD ||
+            this.direction == DIRECTION.EAST && movement == MOVE.FORWARD
 
-    private fun moveOutOfLowerLimit(movement: MOVE): Boolean {
-        return direction == DIRECTION.NORTH && movement == MOVE.BACKWARD ||
-                direction == DIRECTION.SOUTH && movement == MOVE.FORWARD
-    }
+    private fun moveOutOfLeftLimit(movement: MOVE) =
+        this.direction == DIRECTION.EAST && movement == MOVE.BACKWARD ||
+            this.direction == DIRECTION.WEST && movement == MOVE.FORWARD
+
+    private fun isInVerticalLimit(movement: MOVE) =
+        (this.position.getVertical() == 0 && moveOutOfUpperLimit(movement)) ||
+                (this.position.getVertical() == MAX_LATITUDE && moveOutOfLowerLimit(movement))
+
+    private fun moveOutOfLowerLimit(movement: MOVE) =
+         this.direction == DIRECTION.NORTH && movement == MOVE.BACKWARD ||
+                this.direction == DIRECTION.SOUTH && movement == MOVE.FORWARD
 
     private fun moveOutOfUpperLimit(movement: MOVE): Boolean {
         return direction == DIRECTION.NORTH && movement == MOVE.FORWARD ||
