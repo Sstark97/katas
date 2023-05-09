@@ -54,11 +54,16 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
 
     private fun stepsToMove(isFacingVertically: Boolean, movement: MOVE) =
         if (isInVerticalLimit(movement)) -(MAX_LATITUDE)
-        else if (isInHorizontalLimit(isFacingVertically)) -(MAX_LONGITUDE)
+        else if (isInHorizontalLimit(isFacingVertically, movement)) -(MAX_LONGITUDE)
         else 1
 
-    private fun isInHorizontalLimit(isFacingVertically: Boolean) =
-        (this.position.getHorizontal() == 0 || this.position.getHorizontal() == MAX_LONGITUDE) && !isFacingVertically
+    private fun isInHorizontalLimit(isFacingVertically: Boolean, movement: MOVE) =
+        ((this.position.getHorizontal() == 0 &&
+            ((this.direction == DIRECTION.EAST && movement == MOVE.BACKWARD) ||
+            this.direction == DIRECTION.WEST && movement == MOVE.FORWARD))
+        || (this.position.getHorizontal() == MAX_LONGITUDE &&
+            ((this.direction == DIRECTION.WEST && movement == MOVE.BACKWARD) ||
+            (this.direction == DIRECTION.EAST && movement == MOVE.FORWARD)))) && !isFacingVertically
 
     private fun isInVerticalLimit(movement: MOVE): Boolean {
         return (position.getVertical() == 0 && moveOutOfUpperLimit(movement)) ||
