@@ -30,7 +30,7 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
         val movePosition = if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
-        val steps = stepsToMove(isFacingVertically)
+        val steps = stepsToMove(isFacingVertically, movement)
 
         if (isMovingForward) {
             if (isFacingNorthOrWest) movePosition(-steps) else movePosition(steps)
@@ -47,16 +47,21 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
         }
     }
 
-    private fun stepsToMove(isFacingVertically: Boolean) =
-        if (isInVerticalLimit(isFacingVertically)) -(MAX_LATITUDE)
+    private fun stepsToMove(isFacingVertically: Boolean, movement: MOVE) =
+        if (isInVerticalLimit(isFacingVertically, movement)) -(MAX_LATITUDE)
         else if (isInHorizontalLimit(isFacingVertically)) -(MAX_LONGITUDE)
         else 1
 
     private fun isInHorizontalLimit(isFacingVertically: Boolean) =
         (this.position.getHorizontal() == 0 || this.position.getHorizontal() == MAX_LONGITUDE) && !isFacingVertically
 
-    private fun isInVerticalLimit(isFacingVertically: Boolean): Boolean {
-        return (position.getVertical() == 0 || position.getVertical() == MAX_LATITUDE) && isFacingVertically
+    private fun isInVerticalLimit(isFacingVertically: Boolean, movement: MOVE): Boolean {
+        return (position.getVertical() == 0 &&
+                (this.direction == DIRECTION.NORTH && movement == MOVE.FORWARD ||
+                        this.direction == DIRECTION.SOUTH && movement == MOVE.BACKWARD)) ||
+                (position.getVertical() == MAX_LATITUDE &&
+                        (this.direction == DIRECTION.NORTH && movement == MOVE.BACKWARD ||
+                    this.direction == DIRECTION.SOUTH && movement == MOVE.FORWARD))
     }
 
     private fun nextDirectionToFace(command: TURN): DIRECTION {
