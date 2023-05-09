@@ -116,4 +116,22 @@ class RoverTest {
         assertEquals(exception.message, "Obstacle Found in (2, 2)")
         assertEquals(Position(2,1), curiosity.getCurrentPosition())
     }
+
+    @Test
+    fun `if curiosity moves out of upper limit facing north, should keep moving forward`() {
+        val commands = listOf(MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD)
+
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(4,1), curiosity.getCurrentPosition())
+    }
+
+    @Test
+    fun `if curiosity moves out of left limit facing west, should keep moving forward`() {
+        val commands = listOf(TURN.LEFT, MOVE.FORWARD, MOVE.FORWARD, MOVE.FORWARD)
+
+        curiosity.followTheseOrders(commands)
+
+        assertEquals(Position(1,4), curiosity.getCurrentPosition())
+    }
 }
