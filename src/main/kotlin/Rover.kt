@@ -12,22 +12,27 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
                 is MOVE -> {
                     this.nextPosition(movement)
                 }
+
                 is TURN -> {
                     this.direction = nextDirectionToFace(movement)
                 }
             }
         }
     }
+
     fun getCurrentPosition(): Position {
         return this.position
     }
+
     fun getCurrentDirection(): DIRECTION {
         return this.direction
     }
+
     private fun nextPosition(movement: MOVE) {
         val isFacingVertically = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.SOUTH
         val expectedPosition = this.position.clone()
-        val movePosition = if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
+        val movePosition =
+            if (isFacingVertically) expectedPosition::moveVertically else expectedPosition::moveHorizontally
         val isMovingForward = movement == MOVE.FORWARD
         val isFacingNorthOrWest = this.direction == DIRECTION.NORTH || this.direction == DIRECTION.WEST
         val steps = stepsToMove(isFacingVertically, movement)
@@ -48,20 +53,26 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
     }
 
     private fun stepsToMove(isFacingVertically: Boolean, movement: MOVE) =
-        if (isInVerticalLimit(isFacingVertically, movement)) -(MAX_LATITUDE)
+        if (isInVerticalLimit(movement)) -(MAX_LATITUDE)
         else if (isInHorizontalLimit(isFacingVertically)) -(MAX_LONGITUDE)
         else 1
 
     private fun isInHorizontalLimit(isFacingVertically: Boolean) =
         (this.position.getHorizontal() == 0 || this.position.getHorizontal() == MAX_LONGITUDE) && !isFacingVertically
 
-    private fun isInVerticalLimit(isFacingVertically: Boolean, movement: MOVE): Boolean {
-        return (position.getVertical() == 0 &&
-                (this.direction == DIRECTION.NORTH && movement == MOVE.FORWARD ||
-                        this.direction == DIRECTION.SOUTH && movement == MOVE.BACKWARD)) ||
-                (position.getVertical() == MAX_LATITUDE &&
-                        (this.direction == DIRECTION.NORTH && movement == MOVE.BACKWARD ||
-                    this.direction == DIRECTION.SOUTH && movement == MOVE.FORWARD))
+    private fun isInVerticalLimit(movement: MOVE): Boolean {
+        return (position.getVertical() == 0 && moveOutOfUpperLimit(movement)) ||
+                (position.getVertical() == MAX_LATITUDE && moveOutOfLowerLimit(movement))
+    }
+
+    private fun moveOutOfLowerLimit(movement: MOVE): Boolean {
+        return direction == DIRECTION.NORTH && movement == MOVE.BACKWARD ||
+                direction == DIRECTION.SOUTH && movement == MOVE.FORWARD
+    }
+
+    private fun moveOutOfUpperLimit(movement: MOVE): Boolean {
+        return direction == DIRECTION.NORTH && movement == MOVE.FORWARD ||
+                direction == DIRECTION.SOUTH && movement == MOVE.BACKWARD
     }
 
     private fun nextDirectionToFace(command: TURN): DIRECTION {
@@ -78,6 +89,7 @@ class Rover(private var position: Position, private var direction: DIRECTION, pr
             TURN.RIGHT -> {
                 if (isLastPosition) cardinalPoints.first() else cardinalPoints[currentPoint + 1]
             }
+
             else -> {
                 if (isFirstPosition) cardinalPoints.last() else cardinalPoints[currentPoint - 1]
             }
