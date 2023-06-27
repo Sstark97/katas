@@ -4,6 +4,10 @@ import {
     passwordValidator
 } from "../core/password_validator";
 
+function passwordContainsUpperCase(password: string) {
+    return password.match(/[A-Z]+/);
+}
+
 describe("Password validator should", () => {
     it("check all security rules", () => {
         expect(passwordValidator("Pa5s_ord")).toBeTruthy()
