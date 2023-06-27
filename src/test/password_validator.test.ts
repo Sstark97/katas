@@ -23,6 +23,10 @@ describe("Password validator should", () => {
         expect(passwordContainsUpperCase("Password")).toBeTruthy()
     })
 
+    it("contains at least one number", () => {
+        expect(passwordContainsNumbers("p12345")).toBeTruthy()
+    })
+
     it("contains at least one underscore", () => {
         expect(passwordContainsUnderScore("pas_word")).toBeTruthy()
     })
