@@ -16,4 +16,8 @@ describe("Password validator should", () => {
     it("check if contains at least one lowercase", () => {
         expect(passwordContainsLowerCase("password")).toBeTruthy()
     })
+
+    it("check if contains at least one uppercase", () => {
+        expect(passwordContainsUpperCase("Password")).toBeTruthy()
+    })
 })
