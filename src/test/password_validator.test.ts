@@ -10,15 +10,19 @@ describe("Password validator should", () => {
         expect(passwordValidator("Pa5s_ord")).toBeTruthy()
     })
 
-    it("check if contains at least eight characters", () => {
+    it("contains at least eight characters", () => {
         expect(passwordHaveTheMinimumCharacters("password")).toBeTruthy()
     })
 
-    it("check if contains at least one lowercase", () => {
+    it("contains at least one lowercase", () => {
         expect(passwordContainsLowerCase("password")).toBeTruthy()
     })
 
-    it("check if contains at least one uppercase", () => {
+    it("contains at least one uppercase", () => {
         expect(passwordContainsUpperCase("Password")).toBeTruthy()
+    })
+
+    it("contains at least one underscore", () => {
+        expect(passwordContainsUnderScore("pas_word")).toBeTruthy()
     })
 })
