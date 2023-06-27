@@ -11,3 +11,7 @@ export function passwordHaveTheMinimumCharacters(password: string) {
 export function passwordContainsLowerCase(password: string) {
     return password.match(/[a-z]+/);
 }
+
+export function passwordContainsUpperCase(password: string) {
+    return password.match(/[A-Z]+/);
+}

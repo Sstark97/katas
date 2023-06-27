@@ -1,12 +1,9 @@
 import {
     passwordContainsLowerCase,
+    passwordContainsUpperCase,
     passwordHaveTheMinimumCharacters,
     passwordValidator
 } from "../core/password_validator";
-
-function passwordContainsUpperCase(password: string) {
-    return password.match(/[A-Z]+/);
-}
 
 describe("Password validator should", () => {
     it("check all security rules", () => {
