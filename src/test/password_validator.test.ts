@@ -5,6 +5,10 @@ import {
     passwordValidator
 } from "../core/password_validator";
 
+function passwordContainsUnderScore(password: string) {
+    return password.match(/_+/);
+}
+
 describe("Password validator should", () => {
     it("check all security rules", () => {
         expect(passwordValidator("Pa5s_ord")).toBeTruthy()
