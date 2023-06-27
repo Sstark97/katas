@@ -1,7 +1,9 @@
 const MINIMUM_CHARACTERS: number = 8;
 
 export function passwordValidator(password: string) {
-    return undefined;
+    return passwordHaveTheMinimumCharacters(password) && passwordContainsUpperCase(password)
+        && passwordContainsLowerCase(password) && passwordContainsNumbers(password)
+        && passwordContainsUnderScore(password);
 }
 
 export function passwordHaveTheMinimumCharacters(password: string) {
