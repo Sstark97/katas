@@ -1,1 +1,0 @@
-export const saidHello = message => `Hello ${message}!`
