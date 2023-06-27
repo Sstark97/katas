@@ -1,8 +1,4 @@
-import {passwordValidator} from "../core/password_validator";
-
-function passwordHaveTheMinimumCharacters(password: string) {
-    return password.length === 8;
-}
+import {passwordHaveTheMinimumCharacters, passwordValidator} from "../core/password_validator";
 
 describe("Password validator should", () => {
     it("check all security rules", () => {
