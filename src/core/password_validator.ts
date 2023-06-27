@@ -15,3 +15,7 @@ export function passwordContainsLowerCase(password: string) {
 export function passwordContainsUpperCase(password: string) {
     return password.match(/[A-Z]+/);
 }
+
+export function passwordContainsUnderScore(password: string) {
+    return password.match(/_+/);
+}
