@@ -19,3 +19,7 @@ export function passwordContainsUpperCase(password: string) {
 export function passwordContainsUnderScore(password: string) {
     return password.match(/_+/);
 }
+
+export function passwordContainsNumbers(password: string) {
+    return password.match(/[0-9]+/);
+}

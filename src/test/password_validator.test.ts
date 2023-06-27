@@ -1,14 +1,11 @@
 import {
     passwordContainsLowerCase,
+    passwordContainsNumbers,
     passwordContainsUnderScore,
     passwordContainsUpperCase,
     passwordHaveTheMinimumCharacters,
     passwordValidator
 } from "../core/password_validator";
-
-function passwordContainsNumbers(password: string) {
-    return password.match(/[0-9]+/);
-}
 
 describe("Password validator should", () => {
     it("check all security rules", () => {
