@@ -1,8 +1,8 @@
-import {passwordHaveTheMinimumCharacters, passwordValidator} from "../core/password_validator";
-
-function passwordContainsLowerCase(password: string) {
-    return password.match(/[a-z]+/);
-}
+import {
+    passwordContainsLowerCase,
+    passwordHaveTheMinimumCharacters,
+    passwordValidator
+} from "../core/password_validator";
 
 describe("Password validator should", () => {
     it("check all security rules", () => {
