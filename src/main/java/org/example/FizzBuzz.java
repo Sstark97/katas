@@ -10,6 +10,6 @@ public class FizzBuzz {
             return "buzz";
         }
 
-        return "1";
+        return Integer.toString(number);
     }
 }
