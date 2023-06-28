@@ -39,4 +39,9 @@ class FizzBuzzTest {
     public void must_be_buzz_for_any_number_divisible_by_fifteen () {
         assertEquals("fizzbuzz", FizzBuzz.execute(30));
     }
+
+    @Test
+    public void must_be_the_same_number_for_the_rest () {
+        assertEquals("0", FizzBuzz.execute(0));
+    }
 }
