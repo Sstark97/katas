@@ -44,4 +44,9 @@ class FizzBuzzTest {
     public void must_be_the_same_number_for_the_rest () {
         assertEquals("2", FizzBuzz.execute(2));
     }
+
+    @Test
+    public void must_be_zero_for_zero () {
+        assertEquals("0", FizzBuzz.execute(0));
+    }
 }
