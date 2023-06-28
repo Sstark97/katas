@@ -7,12 +7,12 @@ import net.jqwik.api.*;
 
 class FizzBuzzTest {
     @Property
-    boolean every_third_element_starts_with_Fizz(@ForAll("must_be_fizz_for_any_number_divisible_by_three") int i) {
+    boolean every_element_must_be_fizz(@ForAll("divisible_by_three") int i) {
         return FizzBuzz.execute(i).equals("fizz");
     }
 
     @Provide
-    Arbitrary<Integer> must_be_fizz_for_any_number_divisible_by_three() {
+    Arbitrary<Integer> divisible_by_three() {
         return Arbitraries.integers().between(1, 100).filter(i -> i % 3 == 0 && i % 15 != 0);
     }
 
