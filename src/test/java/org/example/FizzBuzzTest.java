@@ -16,14 +16,19 @@ class FizzBuzzTest {
         return Arbitraries.integers().between(1, 100).filter(i -> i % 3 == 0 && i % 15 != 0);
     }
 
-    @Test
-    public void must_be_one_for_number_one () {
-        assertEquals("1", FizzBuzz.execute(1));
+    @Property
+    boolean every_element_must_be_buzz(@ForAll("divisible_by_five") int i) {
+        return FizzBuzz.execute(i).equals("buzz");
+    }
+
+    @Provide
+    Arbitrary<Integer> divisible_by_five() {
+        return Arbitraries.integers().between(1, 100).filter(i -> i % 5 == 0 && i % 15 != 0);
     }
 
     @Test
-    public void must_be_buzz_for_number_five () {
-        assertEquals("buzz", FizzBuzz.execute(5));
+    public void must_be_one_for_number_one () {
+        assertEquals("1", FizzBuzz.execute(1));
     }
 
     @Test
@@ -31,10 +36,6 @@ class FizzBuzzTest {
         assertEquals("fizzbuzz", FizzBuzz.execute(15));
     }
 
-    @Test
-    public void must_be_buzz_for_any_number_divisible_by_five () {
-        assertEquals("buzz", FizzBuzz.execute(10));
-    }
 
     @Test
     public void must_be_buzz_for_any_number_divisible_by_fifteen () {
