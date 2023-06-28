@@ -3,16 +3,22 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import net.jqwik.api.*;
 
 class FizzBuzzTest {
-    @Test
-    public void must_be_one_for_number_one () {
-        assertEquals("1", FizzBuzz.execute(1));
+    @Property
+    boolean every_third_element_starts_with_Fizz(@ForAll("must_be_fizz_for_any_number_divisible_by_three") int i) {
+        return FizzBuzz.execute(i).equals("fizz");
+    }
+
+    @Provide
+    Arbitrary<Integer> must_be_fizz_for_any_number_divisible_by_three() {
+        return Arbitraries.integers().between(1, 100).filter(i -> i % 3 == 0 && i % 15 != 0);
     }
 
     @Test
-    public void must_be_fizz_for_number_three () {
-        assertEquals("fizz", FizzBuzz.execute(3));
+    public void must_be_one_for_number_one () {
+        assertEquals("1", FizzBuzz.execute(1));
     }
 
     @Test
@@ -23,11 +29,6 @@ class FizzBuzzTest {
     @Test
     public void must_be_fizzbuzz_for_number_fifteen () {
         assertEquals("fizzbuzz", FizzBuzz.execute(15));
-    }
-
-    @Test
-    public void must_be_fizz_for_any_number_divisible_by_three () {
-        assertEquals("fizz", FizzBuzz.execute(6));
     }
 
     @Test
