@@ -29,4 +29,9 @@ class FizzBuzzTest {
     public void must_be_fizz_for_any_number_divisible_by_three () {
         assertEquals("fizz", FizzBuzz.execute(6));
     }
+
+    @Test
+    public void must_be_buzz_for_any_number_divisible_by_five () {
+        assertEquals("buzz", FizzBuzz.execute(10));
+    }
 }
