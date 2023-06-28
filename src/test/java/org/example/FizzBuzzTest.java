@@ -14,4 +14,9 @@ class FizzBuzzTest {
     public void must_be_fizz_for_number_three () {
         assertEquals("fizz", FizzBuzz.execute(3));
     }
+
+    @Test
+    public void must_be_buzz_for_number_five () {
+        assertEquals("buzz", FizzBuzz.execute(5));
+    }
 }
