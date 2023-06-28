@@ -36,14 +36,14 @@ class FizzBuzzTest {
         return Arbitraries.integers().between(1, 100).filter(i -> i % 15 == 0);
     }
 
-    @Test
-    public void must_be_one_for_number_one () {
-        assertEquals("1", FizzBuzz.execute(1));
+    @Property
+    boolean every_element_must_be_the_same(@ForAll("the_rest_of_numbers") int i) {
+        return FizzBuzz.execute(i).equals(Integer.toString(i));
     }
 
-    @Test
-    public void must_be_the_same_number_for_the_rest () {
-        assertEquals("2", FizzBuzz.execute(2));
+    @Provide
+    Arbitrary<Integer> the_rest_of_numbers() {
+        return Arbitraries.integers().between(1, 100).filter(i -> i % 3 != 0 && i % 5 != 0);
     }
 
     @Test
