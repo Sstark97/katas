@@ -15,4 +15,4 @@ turn, the multiples of 5 by "buzz". For numbers that in turn are multiples of 3 
 - [x] The rest of the numbers must be the same number
 
 ## Extra task 
-- [ ] Use property based testing
+- [x] Use property based testing
