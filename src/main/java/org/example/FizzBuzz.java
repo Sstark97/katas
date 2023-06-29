@@ -5,13 +5,16 @@ public class FizzBuzz {
         if(number == 0) {
             return "0";
         }
+        boolean isDivisibleByThree = number % 3 == 0;
+        boolean isDivisibleByFive = number % 5 == 0;
 
-        if (number % 15 == 0) {
+        if (isDivisibleByThree && isDivisibleByFive) {
             return "fizzbuzz";
-        } else if (number % 3 == 0) {
+        } else if (isDivisibleByThree) {
             return "fizz";
-        } else if (number % 5 == 0) {
+        } else if (isDivisibleByFive) {
             return "buzz";
+
         }
 
         return Integer.toString(number);
