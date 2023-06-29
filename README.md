@@ -5,7 +5,7 @@ Write a function that converts a text, whose words are delimited by dashes, both
 format.
 
 ## Task List
-- [ ] An empty string returns an empty string. E.g. "" -> ""
+- [x] An empty string returns an empty string. E.g. "" -> ""
 - [ ] For a single word with the firts letter in upper case, it returns the same word. E.g. "Foo" -> "Foo"
 - [ ] For a text that contains all words with the first letter in upper case separated by spaces, it returns the words
 joined in camel case format. E.g. "Foo Bar" -> "FooBar"
