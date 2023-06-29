@@ -1,1 +1,1 @@
-export const camelCaseConverter = (text: string) => "";
+export const camelCaseConverter = (text: string) => text;
