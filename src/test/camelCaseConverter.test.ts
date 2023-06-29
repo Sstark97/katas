@@ -1,3 +1,4 @@
+const camelCaseConverter = (text: string) => "";
 
 describe("Camel Case Converter", () => {
     it("with empty text gives empty", () => {
