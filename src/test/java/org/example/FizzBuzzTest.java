@@ -7,43 +7,43 @@ import net.jqwik.api.*;
 
 class FizzBuzzTest {
     @Property
-    boolean every_element_must_be_fizz(@ForAll("divisible_by_three") int i) {
-        return FizzBuzz.execute(i).equals("fizz");
+    boolean every_element_must_be_fizz(@ForAll("divisible_by_three") int number) {
+        return FizzBuzz.execute(number).equals("fizz");
     }
 
     @Provide
     Arbitrary<Integer> divisible_by_three() {
-        return Arbitraries.integers().between(1, 100).filter(i -> i % 3 == 0 && i % 15 != 0);
+        return Arbitraries.integers().between(1, 100).filter(number -> number % 3 == 0 && number % 15 != 0);
     }
 
     @Property
-    boolean every_element_must_be_buzz(@ForAll("divisible_by_five") int i) {
-        return FizzBuzz.execute(i).equals("buzz");
+    boolean every_element_must_be_buzz(@ForAll("divisible_by_five") int number) {
+        return FizzBuzz.execute(number).equals("buzz");
     }
 
     @Provide
     Arbitrary<Integer> divisible_by_five() {
-        return Arbitraries.integers().between(1, 100).filter(i -> i % 5 == 0 && i % 15 != 0);
+        return Arbitraries.integers().between(1, 100).filter(number -> number % 5 == 0 && number % 15 != 0);
     }
 
     @Property
-    boolean every_element_must_be_fizzbuzz(@ForAll("divisible_by_fifteen") int i) {
-        return FizzBuzz.execute(i).equals("fizzbuzz");
+    boolean every_element_must_be_fizzbuzz(@ForAll("divisible_by_fifteen") int number) {
+        return FizzBuzz.execute(number).equals("fizzbuzz");
     }
 
     @Provide
     Arbitrary<Integer> divisible_by_fifteen() {
-        return Arbitraries.integers().between(1, 100).filter(i -> i % 15 == 0);
+        return Arbitraries.integers().between(1, 100).filter(number -> number % 15 == 0);
     }
 
     @Property
-    boolean every_element_must_be_the_same(@ForAll("the_rest_of_numbers") int i) {
-        return FizzBuzz.execute(i).equals(Integer.toString(i));
+    boolean every_element_must_be_the_same(@ForAll("the_rest_of_numbers") int number) {
+        return FizzBuzz.execute(number).equals(Integer.toString(number));
     }
 
     @Provide
     Arbitrary<Integer> the_rest_of_numbers() {
-        return Arbitraries.integers().between(1, 100).filter(i -> i % 3 != 0 && i % 5 != 0);
+        return Arbitraries.integers().between(1, 100).filter(number -> number % 3 != 0 && number % 5 != 0);
     }
 
     @Test
