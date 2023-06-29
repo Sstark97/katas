@@ -1,1 +1,1 @@
-export const saidHello = message => `Hello ${message}!`
+export const camelCaseConverter = (text: string) => "";
