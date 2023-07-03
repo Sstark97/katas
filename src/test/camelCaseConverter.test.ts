@@ -12,4 +12,8 @@ describe("Camel Case Converter", () => {
     it("given words with the first letter in upper case separated by spaces, it gives the words joined", () => {
         expect(camelCaseConverter("Foo Bar")).toBe("FooBar")
     })
+
+    it("given words with the first letter in upper case separated by dashes, it gives the words joined", () => {
+        expect(camelCaseConverter("Foo_Bar-Foo")).toBe("FooBarFoo")
+    })
 })
