@@ -9,7 +9,7 @@ format.
 - [x] For a single word with the firts letter in upper case, it returns the same word. E.g. "Foo" -> "Foo"
 - [x] For a text that contains all words with the first letter in upper case separated by spaces, it returns the words
 joined in camel case format. E.g. "Foo Bar" -> "FooBar"
-- [ ] For a text that contains all words with the first letter in upper case separated by dashes, it returns the words
+- [x] For a text that contains all words with the first letter in upper case separated by dashes, it returns the words
   joined in camel case format. E.g. "Foo_Bar-Foo" -> "FooBarFoo"
 - [ ] For a word with the first letter in lower case, it returns the same word with the first letter in upper case. 
 E.g. "foo" -> "Foo"

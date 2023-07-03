@@ -1,1 +1,1 @@
-export const camelCaseConverter = (text: string) => text.replace(" ", "");
+export const camelCaseConverter = (text: string) => text.split(/\s|-|_/).join("");
