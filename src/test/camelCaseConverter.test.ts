@@ -13,11 +13,16 @@ describe("Camel Case Converter", () => {
         expect(camelCaseConverter("Foo Bar")).toBe("FooBar")
     })
 
-    it("given a text that contains all words with the first letter in upper case separated by dashes, it gives the words joined", () => {
+    it("given a text that contains all words with the first letter in upper case separated by dashes, it gives " +
+        "the words joined", () => {
         expect(camelCaseConverter("Foo_Bar-Foo")).toBe("FooBarFoo")
     })
 
     it("for a word with the first letter, it gives the same word capitalize", () => {
         expect(camelCaseConverter("foo")).toBe("Foo")
     })
+
+    it("given a text that contains all words with the first letter in lower case separated by dashes, it gives the words joined", () => {
+        expect(camelCaseConverter("foo_bar foo-bar")).toBe("FooBarFooBar")
+    } )
 })
