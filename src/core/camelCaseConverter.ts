@@ -1,1 +1,1 @@
-export const camelCaseConverter = (text: string) => text;
+export const camelCaseConverter = (text: string) => text.replace(" ", "");
