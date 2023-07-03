@@ -13,5 +13,5 @@ joined in camel case format. E.g. "Foo Bar" -> "FooBar"
   joined in camel case format. E.g. "Foo_Bar-Foo" -> "FooBarFoo"
 - [x] For a word with the first letter in lower case, it returns the same word with the first letter in upper case. 
 E.g. "foo" -> "Foo"
-- [ ] For a text that contains all words with the first letter in lower case, it returns the words joined with the first
+- [x] For a text that contains all words with the first letter in lower case, it returns the words joined with the first
   letter in upper case. E.g. “foo_bar foo-bar” -> “FooBarFooBar”
