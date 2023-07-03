@@ -8,4 +8,8 @@ describe("Camel Case Converter", () => {
     it("given a word with the first letter in uppercase, it gives the same word", () => {
       expect(camelCaseConverter("Foo")).toBe("Foo")
     })
+
+    it("given words with the first letter in upper case separated by spaces, it gives the words joined", () => {
+        expect(camelCaseConverter("Foo Bar")).toBe("FooBar")
+    })
 })

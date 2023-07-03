@@ -6,7 +6,7 @@ format.
 
 ## Task List
 - [x] An empty string returns an empty string. E.g. "" -> ""
-- [ ] For a single word with the firts letter in upper case, it returns the same word. E.g. "Foo" -> "Foo"
+- [x] For a single word with the firts letter in upper case, it returns the same word. E.g. "Foo" -> "Foo"
 - [ ] For a text that contains all words with the first letter in upper case separated by spaces, it returns the words
 joined in camel case format. E.g. "Foo Bar" -> "FooBar"
 - [ ] For a text that contains all words with the first letter in upper case separated by dashes, it returns the words
