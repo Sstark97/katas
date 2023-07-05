@@ -6,6 +6,6 @@ innovative product they are developing. It is a team that has a motion sensor an
 
 ## Task List
 - [x] Instructs the recorder to stop recording when the motion sensor does not detect movement.
-- [ ] Instructs the recorder to start recording when the motion sensor detects movement.
+- [x] Instructs the recorder to start recording when the motion sensor detects movement.
 - [ ] Instructs the recorder to stop recording when the motion sensor throw an unexpected error.
 - [ ] Check the sensor state one time per second.
