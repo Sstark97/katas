@@ -5,23 +5,23 @@ describe("Surveillance Controller", () => {
         const fakeRecorder = new FakeRecorder();
         const fakeSensor = new FakeSensor();
         const controller = new SurveillanceController(fakeRecorder, fakeSensor);
-        jest.spyOn(fakeRecorder, "stopRecording")
+        const spyRecorder = jest.spyOn(fakeRecorder, "stopRecording")
 
         controller.recordMotion()
 
-        expect(fakeRecorder.stopRecording).toHaveBeenCalled()
+        expect(spyRecorder).toHaveBeenCalled()
     })
 
     it("Instructs the recorder to start recording when the motion sensor detects movement.", () => {
-        let called = false
         const fakeRecorder = new FakeRecorder();
-        fakeRecorder.startRecording = () => called = true
         const fakeSensor = new FakeSensor();
-        fakeSensor.isDetectingMotion = () => true
         const controller = new SurveillanceController(fakeRecorder, fakeSensor);
+        const spyRecorder =jest.spyOn(fakeRecorder, "startRecording")
+        const spySensor = jest.spyOn(fakeSensor, "isDetectingMotion")
+        spySensor.mockImplementation(() => true)
 
         controller.recordMotion()
 
-        expect(called).toBeTruthy()
+        expect(spyRecorder).toHaveBeenCalled()
     })
 })
