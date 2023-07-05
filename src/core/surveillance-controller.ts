@@ -1,10 +1,8 @@
-export const saidHello = message => `Hello ${message}!`
-
-interface MotionSensor {
+export interface MotionSensor {
     isDetectingMotion(): boolean;
 }
 
-interface VideoRecorder {
+export interface VideoRecorder {
     startRecording(): void;
 
     stopRecording(): void;
