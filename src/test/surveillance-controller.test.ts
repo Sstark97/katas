@@ -12,4 +12,17 @@ describe("Surveillance Controller", () => {
 
         expect(called).toBeTruthy()
     })
+
+    it("Instructs the recorder to start recording when the motion sensor detects movement.", () => {
+        let called = false
+        const fakeRecorder = new FakeRecorder();
+        fakeRecorder.startRecording = () => called = true
+        const fakeSensor = new FakeSensor();
+        fakeSensor.isDetectingMotion = () => true
+        const controller = new SurveillanceController(fakeRecorder, fakeSensor);
+
+        controller.recordMotion()
+
+        expect(called).toBeTruthy()
+    })
 })
