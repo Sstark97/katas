@@ -26,12 +26,14 @@ export class FakeSensor implements MotionSensor {
 }
 
 export class SurveillanceController {
-    constructor(private readonly fakeRecorder: VideoRecorder, private readonly fakeSensor: MotionSensor) {
+    constructor(private readonly recorder: VideoRecorder, private readonly sensor: MotionSensor) {
     }
 
     recordMotion() {
-        if (!this.fakeSensor.isDetectingMotion()) {
-            this.fakeRecorder.stopRecording()
+        if (!this.sensor.isDetectingMotion()) {
+            this.recorder.stopRecording()
+        } else {
+            this,this.recorder.startRecording()
         }
     }
 }
