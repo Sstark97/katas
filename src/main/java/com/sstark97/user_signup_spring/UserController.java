@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/user")
 public class UserController {
-    @PostMapping
+    @PostMapping("/sign_up")
     ResponseEntity<String> signUp() {
         return ResponseEntity.ok().build();
     }
