@@ -67,7 +67,7 @@ class UserSignUpShould {
 
     @Test
     void return_400_when_sign_up_and_email_already_exists() throws Exception {
-        UserSignUp user = new UserSignUp("name", "badFormatEmail", "@Passw0rd");
+        UserSignUp user = new UserSignUp("name", "email@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
 
         Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
