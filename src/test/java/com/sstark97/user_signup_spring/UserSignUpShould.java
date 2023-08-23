@@ -64,4 +64,22 @@ class UserSignUpShould {
 
         assertThat(request.getResponse().getContentAsString()).isEqualTo("The email have a bad format");
     }
+
+    @Test
+    void return_400_when_sign_up_and_email_already_exists() throws Exception {
+        UserSignUp user = new UserSignUp("name", "badFormatEmail", "@Passw0rd");
+        String userToJson = mapper.writeValueAsString(user);
+
+        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
+
+        MvcResult request = mockMvc.perform(
+                        post("/user/sign_up")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(userToJson)
+                )
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertThat(request.getResponse().getContentAsString()).isEqualTo("These email already exist");
+    }
 }
