@@ -13,4 +13,11 @@ public class EmailShould {
         assertThat(email.isLeft()).isTrue();
         assertThat(email.getLeft()).isEqualTo("The email have a bad format");
     }
+
+    @Test
+    public void get_an_email_with_a_good_email_format() {
+        Either<String, Email> email = Email.of("good@email.com");
+
+        assertThat(email.isRight()).isTrue();
+    }
 }
