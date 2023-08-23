@@ -1,5 +1,6 @@
 package com.sstark97.user_signup_spring;
 
+import com.sstark97.user_signup_spring.domain.model.Password;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 
