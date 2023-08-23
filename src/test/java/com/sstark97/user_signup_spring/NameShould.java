@@ -1,15 +1,16 @@
 package com.sstark97.user_signup_spring;
 
-import com.sstark97.user_signup_spring.domain.model.Password;
+import com.sstark97.user_signup_spring.domain.model.Email;
+import com.sstark97.user_signup_spring.domain.model.Name;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Java6Assertions.assertThat;
 
-public class PasswordShould {
+public class NameShould {
     @Test
     void get_an_error_message_with_a_password_of_3_characters_or_less() {
-        Either<String, Password> email = Password.of("na");
+        Either<String, Name> email = Name.of("na");
 
         assertThat(email.isLeft()).isTrue();
         assertThat(email.getLeft()).isEqualTo("The name must have 3 characters or more");
