@@ -9,14 +9,22 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserSignupAdapter implements UserSignUpRepository {
+
+    public static final String BAD_FORMAT_ERROR = "The email have a bad format";
+    public static final String EMAIL_ALREADY_EXIST_ERROR = "These email already exist";
+
     @Override
     public Either<ApiError, String> save(UserSignUp user) {
         String email = user.getEmail();
 
-        if(!email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$")) {
-            return Either.left(new ApiError("The email have a bad format", HttpStatus.BAD_REQUEST));
+        if(notHaveTheCorrectFormat(email)) {
+            return Either.left(new ApiError(BAD_FORMAT_ERROR, HttpStatus.BAD_REQUEST));
         }
 
-        return Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST));
+        return Either.left(new ApiError(EMAIL_ALREADY_EXIST_ERROR, HttpStatus.BAD_REQUEST));
+    }
+
+    private static boolean notHaveTheCorrectFormat(String email) {
+        return !email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 }
