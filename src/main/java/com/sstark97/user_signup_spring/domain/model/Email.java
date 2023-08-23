@@ -16,6 +16,10 @@ public class Email {
         return Either.right(new Email(email));
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     private static boolean notHaveTheCorrectFormat(String email) {
         return !email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }

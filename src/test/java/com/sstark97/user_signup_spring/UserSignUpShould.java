@@ -2,8 +2,8 @@ package com.sstark97.user_signup_spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sstark97.user_signup_spring.domain.model.ApiError;
-import com.sstark97.user_signup_spring.domain.model.UserSignUp;
 import com.sstark97.user_signup_spring.domain.repositories.UserSignUpRepository;
+import com.sstark97.user_signup_spring.infrastructure.dto.UserDto;
 import io.vavr.control.Either;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
@@ -35,7 +35,7 @@ class UserSignUpShould {
 
     @Test
     void return_200_when_sign_up() throws Exception {
-        UserSignUp user = new UserSignUp("name", "email@email.com", "@Passw0rd");
+        UserDto user = new UserDto("name", "email@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
 
         mockMvc.perform(
@@ -49,7 +49,7 @@ class UserSignUpShould {
 
     @Test
     void return_400_when_sign_up_with_a_bad_email_format() throws Exception {
-        UserSignUp user = new UserSignUp("name", "badFormatEmail", "@Passw0rd");
+        UserDto user = new UserDto("name", "badFormatEmail", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
 
         Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("The email have a bad format", HttpStatus.BAD_REQUEST)));
@@ -67,7 +67,7 @@ class UserSignUpShould {
 
     @Test
     void return_400_when_sign_up_and_email_already_exists() throws Exception {
-        UserSignUp user = new UserSignUp("name", "email@email.com", "@Passw0rd");
+        UserDto user = new UserDto("name", "email@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
 
         Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
