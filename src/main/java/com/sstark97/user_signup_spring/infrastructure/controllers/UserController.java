@@ -1,4 +1,4 @@
-package com.sstark97.user_signup_spring;
+package com.sstark97.user_signup_spring.infrastructure.controllers;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;

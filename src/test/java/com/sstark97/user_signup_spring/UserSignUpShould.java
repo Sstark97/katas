@@ -1,6 +1,7 @@
 package com.sstark97.user_signup_spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.sstark97.user_signup_spring.domain.UserSignUp;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

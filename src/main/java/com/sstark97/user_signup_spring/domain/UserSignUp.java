@@ -1,4 +1,4 @@
-package com.sstark97.user_signup_spring;
+package com.sstark97.user_signup_spring.domain;
 
 public class UserSignUp {
     private final String name;
