@@ -1,6 +1,5 @@
 package com.sstark97.user_signup_spring;
 
-import com.sstark97.user_signup_spring.domain.model.Email;
 import com.sstark97.user_signup_spring.domain.model.Name;
 import io.vavr.control.Either;
 import org.junit.jupiter.api.Test;
@@ -14,5 +13,12 @@ public class NameShould {
 
         assertThat(email.isLeft()).isTrue();
         assertThat(email.getLeft()).isEqualTo("The name must have 3 characters or more");
+    }
+
+    @Test
+    void get_a_with_a_name_with_correct_length() {
+        Either<String, Name> email = Name.of("good@email.com");
+
+        assertThat(email.isRight()).isTrue();
     }
 }
