@@ -15,8 +15,12 @@ public class UserSignUp {
     }
 
     public static Either<String, UserSignUp> of(UserDto userDto) {
+        Either<String, Name> name = Name.of(userDto.name());
         Either<String, Email> email = Email.of(userDto.email());
-        if (email.isLeft()) {
+
+        if (name.isLeft()) {
+            return Either.left(name.getLeft());
+        } else if (email.isLeft()) {
             return Either.left(email.getLeft());
         }
 

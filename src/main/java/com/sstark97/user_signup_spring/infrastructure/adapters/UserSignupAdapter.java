@@ -15,10 +15,7 @@ public class UserSignupAdapter implements UserSignUpRepository {
     @Override
     public Either<ApiError, String> save(UserDto userDto) {
         Either<String, UserSignUp> user = UserSignUp.of(userDto);
-        String name = userDto.name();
-        if(name.length() < 3) {
-            return Either.left(new ApiError("The name must have 3 characters or more", HttpStatus.BAD_REQUEST));
-        }
+
         if(user.isLeft()) {
             return Either.left(new ApiError(user.getLeft(), HttpStatus.BAD_REQUEST));
         }
