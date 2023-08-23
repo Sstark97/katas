@@ -1,16 +1,18 @@
 package com.sstark97.user_signup_spring;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.sstark97.user_signup_spring.application.services.UserSignUpService;
+import com.sstark97.user_signup_spring.domain.model.ApiError;
 import com.sstark97.user_signup_spring.domain.model.UserSignUp;
 import com.sstark97.user_signup_spring.domain.repositories.UserSignUpRepository;
+import io.vavr.control.Either;
 import org.hamcrest.Matchers;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
@@ -26,9 +28,8 @@ class UserSignUpShould {
 
     @Autowired
     private MockMvc mockMvc;
-
-    @MockBean
-    private UserSignUpService signUpService;
+    @Mock
+    private UserSignUpRepository repository;
 
     private static ObjectMapper mapper = new ObjectMapper();
 
@@ -51,7 +52,7 @@ class UserSignUpShould {
         UserSignUp user = new UserSignUp("name", "badFormatEmail", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
 
-        Mockito.when(signUpService.save(user)).thenReturn("The email have a bad format");
+        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("The email have a bad format", HttpStatus.BAD_REQUEST)));
 
         MvcResult request = mockMvc.perform(
                         post("/user/sign_up")
