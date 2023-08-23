@@ -1,5 +1,6 @@
 package com.sstark97.user_signup_spring;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sstark97.user_signup_spring.domain.model.ApiError;
 import com.sstark97.user_signup_spring.domain.repositories.UserSignUpRepository;
@@ -81,5 +82,23 @@ class UserSignUpShould {
                 .andReturn();
 
         assertThat(request.getResponse().getContentAsString()).isEqualTo("These email already exist");
+    }
+
+    @Test
+    void return_400_when_name_not_have_the_correct_length() throws Exception {
+        UserDto user = new UserDto("na", "email@email.com", "@Passw0rd");
+        String userToJson = mapper.writeValueAsString(user);
+
+        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
+
+        MvcResult request = mockMvc.perform(
+                        post("/user/sign_up")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(userToJson)
+                )
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertThat(request.getResponse().getContentAsString()).isEqualTo("The name must have 3 characters or more");
     }
 }
