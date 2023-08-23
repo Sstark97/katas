@@ -10,6 +10,13 @@ public class Email {
     }
 
     public static Either<String, Email> of(String email) {
-        return Either.left("The email have a bad format");
+        if(notHaveTheCorrectFormat(email)) {
+            return Either.left("The email have a bad format");
+        }
+        return Either.right(new Email(email));
+    }
+
+    private static boolean notHaveTheCorrectFormat(String email) {
+        return !email.matches("^[\\w-.]+@([\\w-]+\\.)+[\\w-]{2,4}$");
     }
 }
