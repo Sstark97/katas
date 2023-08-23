@@ -31,7 +31,7 @@ class UserSignUpShould {
     @Mock
     private UserSignUpRepository repository;
 
-    private static ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
 
     @Test
     void return_200_when_sign_up() throws Exception {

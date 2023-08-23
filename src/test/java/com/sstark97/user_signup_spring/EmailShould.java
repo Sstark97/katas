@@ -7,7 +7,7 @@ import static org.assertj.core.api.Java6Assertions.assertThat;
 
 public class EmailShould {
     @Test
-    public void get_an_error_message_with_a_bad_email_format() {
+    void get_an_error_message_with_a_bad_email_format() {
         Either<String, Email> email = Email.of("bademail");
 
         assertThat(email.isLeft()).isTrue();
@@ -15,7 +15,7 @@ public class EmailShould {
     }
 
     @Test
-    public void get_an_email_with_a_good_email_format() {
+    void get_an_email_with_a_good_email_format() {
         Either<String, Email> email = Email.of("good@email.com");
 
         assertThat(email.isRight()).isTrue();
