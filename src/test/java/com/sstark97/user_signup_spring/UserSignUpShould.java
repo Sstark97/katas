@@ -68,7 +68,7 @@ class UserSignUpShould {
 
     @Test
     void return_400_when_sign_up_and_email_already_exists() throws Exception {
-        UserDto user = new UserDto("name", "email@email.com", "@Passw0rd");
+        UserDto user = new UserDto("name", "example@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
         ApiError theseEmailAlreadyExist = new ApiError("These email already exist", HttpStatus.BAD_REQUEST);
 

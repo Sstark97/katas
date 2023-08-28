@@ -13,7 +13,7 @@ public class UserSignUpService {
         this.repository = repository;
     }
 
-    public Either<ApiError, String> save(UserDto user) {
+    public Either<ApiError, UserSignUp> save(UserDto user) {
         return repository.save(user);
     }
 }

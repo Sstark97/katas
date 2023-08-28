@@ -5,10 +5,10 @@ import io.vavr.control.Either;
 
 public class UserSignUp {
     private final String name;
-    private final Email email;
+    private final String email;
     private final String password;
 
-    private UserSignUp(String name, Email email, String password) {
+    private UserSignUp(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -27,14 +27,14 @@ public class UserSignUp {
             return Either.left(password.getLeft());
         }
 
-        return Either.right(new UserSignUp(userDto.name(), email.get(), userDto.password()));
+        return Either.right(new UserSignUp(userDto.name(), userDto.email(), userDto.password()));
     }
 
     public String getName() {
         return name;
     }
 
-    public Email getEmail() {
+    public String getEmail() {
         return email;
     }
 

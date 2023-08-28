@@ -2,6 +2,7 @@ package com.sstark97.user_signup_spring.infrastructure.controllers;
 
 import com.sstark97.user_signup_spring.application.services.UserSignUpService;
 import com.sstark97.user_signup_spring.domain.model.ApiError;
+import com.sstark97.user_signup_spring.domain.model.UserSignUp;
 import com.sstark97.user_signup_spring.infrastructure.dto.UserDto;
 import io.vavr.control.Either;
 import org.springframework.http.ResponseEntity;
@@ -20,13 +21,13 @@ public class UserController {
     }
 
     @PostMapping("/sign_up")
-    ResponseEntity<String> signUp(@RequestBody UserDto user) {
-        Either<ApiError, String> saveResult = signUpService.save(user);
+    ResponseEntity signUp(@RequestBody UserDto user) {
+        Either<ApiError, UserSignUp> saveResult = signUpService.save(user);
 
         if(saveResult.isLeft()) {
             ApiError error = saveResult.getLeft();
             return new ResponseEntity<>(error.getMessage(), error.getStatusCode());
         }
-        return ResponseEntity.ok().build();
+        return ResponseEntity.ok(saveResult.get());
     }
 }
