@@ -17,11 +17,16 @@ public class UserSignUp {
     public static Either<String, UserSignUp> of(UserDto userDto) {
         Either<String, Name> name = Name.of(userDto.name());
         Either<String, Email> email = Email.of(userDto.email());
+        String password = userDto.password();
 
         if (name.isLeft()) {
             return Either.left(name.getLeft());
         } else if (email.isLeft()) {
             return Either.left(email.getLeft());
+        }
+
+        if(password.length() < 8) {
+            return Either.left("The password must have 8 characters or more");
         }
 
         return Either.right(new UserSignUp(userDto.name(), email.get(), userDto.password()));
