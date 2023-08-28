@@ -13,14 +13,14 @@ public class Password {
     public static Either<String, Password> of(String password) {
         if(password.length() < MINIMUM_LENGTH) {
             return Either.left("The password must have 8 characters or more");
-        } else if(containsAnyUpperCaseCharacter(password)) {
+        } else if(notContainsAnyUpperCaseCharacter(password)) {
             return Either.left("The password must have 1 upper case or more");
         }
         return Either.right(new Password(password));
     }
 
-    private static boolean containsAnyUpperCaseCharacter(String password) {
-        return !password.matches("[A-Z]+");
+    private static boolean notContainsAnyUpperCaseCharacter(String password) {
+        return password.chars().noneMatch(Character::isUpperCase);
     }
 
     public String getPassword() {
