@@ -161,4 +161,23 @@ class UserSignUpShould {
 
         assertThat(request.getResponse().getContentAsString()).isEqualTo(passwordWithIncorrectLength.getMessage());
     }
+
+    @Test
+    void return_400_when_password_not_have_any_special_character() throws Exception {
+        UserDto user = new UserDto("name", "email@email.com", "Passw0rd");
+        String userToJson = mapper.writeValueAsString(user);
+        ApiError passwordWithIncorrectLength = new ApiError("The password must have 1 special character or more", HttpStatus.BAD_REQUEST);
+
+        Mockito.when(repository.save(user)).thenReturn(Either.left(passwordWithIncorrectLength));
+
+        MvcResult request = mockMvc.perform(
+                        post("/user/sign_up")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(userToJson)
+                )
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertThat(request.getResponse().getContentAsString()).isEqualTo(passwordWithIncorrectLength.getMessage());
+    }
 }
