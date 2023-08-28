@@ -21,7 +21,7 @@ public class UserController {
     }
 
     @PostMapping("/sign_up")
-    ResponseEntity signUp(@RequestBody UserDto user) {
+    ResponseEntity<?> signUp(@RequestBody UserDto user) {
         Either<ApiError, UserSignUp> saveResult = signUpService.save(user);
 
         if(saveResult.isLeft()) {
