@@ -22,4 +22,12 @@ public class PasswordShould {
         assertThat(password.isLeft()).isTrue();
         assertThat(password.getLeft()).isEqualTo("The password must have 1 upper case or more");
     }
+
+    @Test
+    void get_an_error_message_with_a_password_without_any_digit() {
+        Either<String, Password> password = Password.of("Password");
+
+        assertThat(password.isLeft()).isTrue();
+        assertThat(password.getLeft()).isEqualTo("The password must have 1 digit or more");
+    }
 }
