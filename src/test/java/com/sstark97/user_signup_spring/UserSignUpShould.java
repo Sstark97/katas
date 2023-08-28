@@ -1,6 +1,5 @@
 package com.sstark97.user_signup_spring;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sstark97.user_signup_spring.domain.model.ApiError;
 import com.sstark97.user_signup_spring.domain.repositories.UserSignUpRepository;
@@ -52,8 +51,9 @@ class UserSignUpShould {
     void return_400_when_sign_up_with_a_bad_email_format() throws Exception {
         UserDto user = new UserDto("name", "badFormatEmail", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
+        ApiError emailWithBadFormat = new ApiError("The email have a bad format", HttpStatus.BAD_REQUEST);
 
-        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("The email have a bad format", HttpStatus.BAD_REQUEST)));
+        Mockito.when(repository.save(user)).thenReturn(Either.left(emailWithBadFormat));
 
         MvcResult request = mockMvc.perform(
                         post("/user/sign_up")
@@ -63,15 +63,16 @@ class UserSignUpShould {
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
-        assertThat(request.getResponse().getContentAsString()).isEqualTo("The email have a bad format");
+        assertThat(request.getResponse().getContentAsString()).isEqualTo(emailWithBadFormat.getMessage());
     }
 
     @Test
     void return_400_when_sign_up_and_email_already_exists() throws Exception {
         UserDto user = new UserDto("name", "email@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
+        ApiError theseEmailAlreadyExist = new ApiError("These email already exist", HttpStatus.BAD_REQUEST);
 
-        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
+        Mockito.when(repository.save(user)).thenReturn(Either.left(theseEmailAlreadyExist));
 
         MvcResult request = mockMvc.perform(
                         post("/user/sign_up")
@@ -81,15 +82,16 @@ class UserSignUpShould {
                 .andExpect(status().isBadRequest())
                 .andReturn();
 
-        assertThat(request.getResponse().getContentAsString()).isEqualTo("These email already exist");
+        assertThat(request.getResponse().getContentAsString()).isEqualTo(theseEmailAlreadyExist.getMessage());
     }
 
     @Test
     void return_400_when_name_not_have_the_correct_length() throws Exception {
         UserDto user = new UserDto("na", "email@email.com", "@Passw0rd");
         String userToJson = mapper.writeValueAsString(user);
+        ApiError nameWithIncorrectLength = new ApiError("The name must have 3 characters or more", HttpStatus.BAD_REQUEST);
 
-        Mockito.when(repository.save(user)).thenReturn(Either.left(new ApiError("These email already exist", HttpStatus.BAD_REQUEST)));
+        Mockito.when(repository.save(user)).thenReturn(Either.left(nameWithIncorrectLength));
 
         MvcResult request = mockMvc.perform(
                         post("/user/sign_up")
@@ -98,7 +100,8 @@ class UserSignUpShould {
                 )
                 .andExpect(status().isBadRequest())
                 .andReturn();
+        System.out.println(request.getResponse().getContentAsString());
 
-        assertThat(request.getResponse().getContentAsString()).isEqualTo("The name must have 3 characters or more");
+        assertThat(request.getResponse().getContentAsString()).isEqualTo(nameWithIncorrectLength.getMessage());
     }
 }
