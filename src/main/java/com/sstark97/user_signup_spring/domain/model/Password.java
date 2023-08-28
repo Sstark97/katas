@@ -13,6 +13,8 @@ public class Password {
     public static Either<String, Password> of(String password) {
         if(password.length() < MINIMUM_LENGTH) {
             return Either.left("The password must have 8 characters or more");
+        } else if(!password.matches("[A-Z]+")) {
+            return Either.left("The password must have 1 upper case or more");
         }
         return Either.right(new Password(password));
     }
