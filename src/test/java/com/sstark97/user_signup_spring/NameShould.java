@@ -17,7 +17,7 @@ public class NameShould {
 
     @Test
     void get_a_with_a_name_with_correct_length() {
-        Either<String, Name> email = Name.of("good@email.com");
+        Either<String, Name> email = Name.of("name");
 
         assertThat(email.isRight()).isTrue();
     }
