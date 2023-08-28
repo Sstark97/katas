@@ -15,10 +15,14 @@ public class Password {
             return Either.left("The password must have 8 characters or more");
         } else if(notContainsAnyUpperCaseCharacter(password)) {
             return Either.left("The password must have 1 upper case or more");
-        } else if (password.chars().noneMatch(Character::isDigit)) {
+        } else if (notContainsAnyDigit(password)) {
             return Either.left("The password must have 1 digit or more");
         }
         return Either.right(new Password(password));
+    }
+
+    private static boolean notContainsAnyDigit(String password) {
+        return password.chars().noneMatch(Character::isDigit);
     }
 
     private static boolean notContainsAnyUpperCaseCharacter(String password) {
