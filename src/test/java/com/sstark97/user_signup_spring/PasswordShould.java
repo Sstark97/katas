@@ -30,4 +30,12 @@ public class PasswordShould {
         assertThat(password.isLeft()).isTrue();
         assertThat(password.getLeft()).isEqualTo("The password must have 1 digit or more");
     }
+
+    @Test
+    void get_an_error_message_with_a_password_without_any_special_character() {
+        Either<String, Password> password = Password.of("Passw0rd");
+
+        assertThat(password.isLeft()).isTrue();
+        assertThat(password.getLeft()).isEqualTo("The password must have 1 special character or more");
+    }
 }
