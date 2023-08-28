@@ -123,4 +123,23 @@ class UserSignUpShould {
 
         assertThat(request.getResponse().getContentAsString()).isEqualTo(passwordWithIncorrectLength.getMessage());
     }
+
+    @Test
+    void return_400_when_password_not_have_upper_case_characters() throws Exception {
+        UserDto user = new UserDto("name", "email@email.com", "password");
+        String userToJson = mapper.writeValueAsString(user);
+        ApiError passwordWithIncorrectLength = new ApiError("The password must have 1 upper case or more", HttpStatus.BAD_REQUEST);
+
+        Mockito.when(repository.save(user)).thenReturn(Either.left(passwordWithIncorrectLength));
+
+        MvcResult request = mockMvc.perform(
+                        post("/user/sign_up")
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .content(userToJson)
+                )
+                .andExpect(status().isBadRequest())
+                .andReturn();
+
+        assertThat(request.getResponse().getContentAsString()).isEqualTo(passwordWithIncorrectLength.getMessage());
+    }
 }
