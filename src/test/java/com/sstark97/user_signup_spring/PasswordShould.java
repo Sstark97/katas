@@ -14,4 +14,12 @@ public class PasswordShould {
         assertThat(password.isLeft()).isTrue();
         assertThat(password.getLeft()).isEqualTo("The password must have 8 characters or more");
     }
+
+    @Test
+    void get_an_error_message_with_a_password_without_any_upper_case_character() {
+        Either<String, Password> password = Password.of("password");
+
+        assertThat(password.isLeft()).isTrue();
+        assertThat(password.getLeft()).isEqualTo("The password must have 1 upper case or more");
+    }
 }
