@@ -1,6 +1,7 @@
 package com.sstark97.user_signup_spring.domain.model;
 
 import io.vavr.control.Either;
+import java.util.Arrays;
 
 public class Password {
     private static final int MINIMUM_LENGTH = 8;
@@ -17,6 +18,8 @@ public class Password {
             return Either.left("The password must have 1 upper case or more");
         } else if (notContainsAnyDigit(password)) {
             return Either.left("The password must have 1 digit or more");
+        } else if (Arrays.stream(password.split("")).filter(pass -> pass.matches("[-/@#!*$%^&.'_+={}()]+")).toList().isEmpty()) {
+            return Either.left("The password must have 1 special character or more");
         }
         return Either.right(new Password(password));
     }
