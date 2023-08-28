@@ -27,6 +27,8 @@ public class UserSignUp {
 
         if(password.length() < 8) {
             return Either.left("The password must have 8 characters or more");
+        } else if(!password.matches("[A-Z]+")) {
+            return Either.left("The password must have 1 upper case or more");
         }
 
         return Either.right(new UserSignUp(userDto.name(), email.get(), userDto.password()));
