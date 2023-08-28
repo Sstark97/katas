@@ -18,10 +18,14 @@ public class Password {
             return Either.left("The password must have 1 upper case or more");
         } else if (notContainsAnyDigit(password)) {
             return Either.left("The password must have 1 digit or more");
-        } else if (Arrays.stream(password.split("")).filter(pass -> pass.matches("[-/@#!*$%^&.'_+={}()]+")).toList().isEmpty()) {
+        } else if (notContainsSpecialCharacters(password)) {
             return Either.left("The password must have 1 special character or more");
         }
         return Either.right(new Password(password));
+    }
+
+    private static boolean notContainsSpecialCharacters(String password) {
+        return Arrays.stream(password.split("")).filter(pass -> pass.matches("[-/@#!*$%^&.'_+={}()]+")).toList().isEmpty();
     }
 
     private static boolean notContainsAnyDigit(String password) {
