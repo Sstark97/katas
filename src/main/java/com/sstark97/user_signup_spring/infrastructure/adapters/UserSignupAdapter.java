@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class UserSignupAdapter implements UserSignUpRepository {
-    public static final String EMAIL_ALREADY_EXIST_ERROR = "These email already exist";
+    public static final String EMAIL_ALREADY_EXIST_ERROR = "This email already exist";
 
     @Override
     public Either<ApiError, UserSignUp> save(UserDto userDto) {
@@ -22,7 +22,6 @@ public class UserSignupAdapter implements UserSignUpRepository {
 
         // In real world, this is where we would call the database to check if the email already exist
         if (user.get().getEmail().equals("example@email.com")) {
-            System.out.println("sdfdsfdsfdsfs");
             return Either.left(new ApiError(EMAIL_ALREADY_EXIST_ERROR, HttpStatus.BAD_REQUEST));
         }
 
