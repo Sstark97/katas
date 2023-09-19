@@ -3,7 +3,7 @@ val fizzBuzz: Int => String = (n: Int) => {
     "fizzbuzz"
   else if n % 3 == 0 then
     "fizz"
-  else if n == 5 then
+  else if n % 5 == 0 then
     "buzz"
   else
     "1"
