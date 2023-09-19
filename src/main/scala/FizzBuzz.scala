@@ -6,5 +6,5 @@ val fizzBuzz: Int => String = (n: Int) => {
   if fizzBuzz != "" then
     fizzBuzz
   else
-    "1"
+    n.toString
 }
