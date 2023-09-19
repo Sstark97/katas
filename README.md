@@ -5,7 +5,7 @@ Write a program that displays the numbers from 1 to 100, substituting the multip
 turn, the multiples of 5 by "buzz". For numbers that in turn are multiples of 3 and 5, we will use the string "fizzbuzz".
 
 ## Task List
-- [ ] The number 1 must be "1"
+- [x] The number 1 must be "1"
 - [ ] The number 3 must be "fizz"
 - [ ] The number 5 must be "buzz"
 - [ ] The number 15 must be "fizzbuzz"
