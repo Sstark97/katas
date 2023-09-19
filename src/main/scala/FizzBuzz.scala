@@ -1,18 +1,15 @@
-def isFizz(n: Int): Boolean = {
-  n % 3 == 0
+def isFizz(number: Int): Boolean = {
+  number % 3 == 0
 }
 
-def isBuzz(n: Int): Boolean = {
-  n % 5 == 0
+def isBuzz(number: Int): Boolean = {
+  number % 5 == 0
 }
 
-def fizzBuzz(n: Int): String = {
-  val fizz = if isFizz(n) then "fizz" else ""
-  val buzz = if isBuzz(n) then "buzz" else ""
+def fizzBuzz(number: Int): String = {
+  val fizz = if isFizz(number) then "fizz" else ""
+  val buzz = if isBuzz(number) then "buzz" else ""
   val fizzBuzz = fizz + buzz
 
-  if fizzBuzz != "" then
-    fizzBuzz
-  else
-    n.toString
+  if fizzBuzz.isBlank then number.toString else fizzBuzz
 }
