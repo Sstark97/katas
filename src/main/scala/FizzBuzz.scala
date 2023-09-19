@@ -1,10 +1,10 @@
 val fizzBuzz: Int => String = (n: Int) => {
-  if n % 15 == 0 then
-    "fizzbuzz"
-  else if n % 3 == 0 then
-    "fizz"
-  else if n % 5 == 0 then
-    "buzz"
+  val fizz = if n % 3 == 0 then "fizz" else ""
+  val buzz = if n % 5 == 0 then "buzz" else ""
+  val fizzBuzz = fizz + buzz
+
+  if fizzBuzz != "" then
+    fizzBuzz
   else
     "1"
 }
