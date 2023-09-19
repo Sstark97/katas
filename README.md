@@ -6,7 +6,7 @@ turn, the multiples of 5 by "buzz". For numbers that in turn are multiples of 3 
 
 ## Task List
 - [x] The number 1 must be "1"
-- [ ] The number 3 must be "fizz"
+- [x] The number 3 must be "fizz"
 - [ ] The number 5 must be "buzz"
 - [ ] The number 15 must be "fizzbuzz"
 - [ ] For any number divisible by 3 must be "fizz"

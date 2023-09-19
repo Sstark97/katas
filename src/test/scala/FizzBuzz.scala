@@ -5,7 +5,11 @@ class FizzBuzz extends munit.FunSuite {
     assertEquals(fizzBuzz(1), "1")
   }
 
-  test("The number 3 must be 'Fizz'") {
+  test("The number 3 must be 'fizz'") {
     assertEquals(fizzBuzz(3), "fizz")
+  }
+
+  test("The number 5 must be 'buzz'") {
+    assertEquals(fizzBuzz(5), "buzz")
   }
 }
