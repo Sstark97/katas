@@ -20,4 +20,8 @@ class FizzBuzz extends munit.FunSuite {
   test("For any number divisible by 3 must be 'fizz'") {
     assertEquals(fizzBuzz(6), "fizz")
   }
+  
+  test("For any number divisible by 5 must be 'buzz'") {
+    assertEquals(fizzBuzz(10), "buzz")
+  }
 }
