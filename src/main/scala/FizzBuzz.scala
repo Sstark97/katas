@@ -13,3 +13,12 @@ def fizzBuzz(number: Int): String = {
 
   if fizzBuzz.isBlank then number.toString else fizzBuzz
 }
+
+// Function that returns a string of fizzbuzz values from start to end
+def fizzBuzzRange(start: Int, end: Int): String = {
+  (start to end).map(fizzBuzz).mkString(", ")
+}
+
+@main def fizzBuzzMain(): Unit = {
+  println(fizzBuzzRange(1, 100))
+}
