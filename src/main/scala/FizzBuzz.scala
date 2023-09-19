@@ -3,6 +3,8 @@ val fizzBuzz: Int => String = (n: Int) => {
     "fizz"  
   else if n == 5 then
     "buzz"
+  else if n == 15 then
+    "fizzbuzz"
   else
     "1"
 }
