@@ -8,7 +8,3 @@ void main() {
     });
   });
 }
-
-fizzbuzz(int number) {
-  return "1";
-}
