@@ -25,3 +25,4 @@ In each of the programming language directories, there is a README.md file with 
 - [FizzBuzz](./fizzbuzz/README.md)
 - [User Signup](./user_signup/README.md)
 - [Mars Rover](./mars_rover/README.md)
+- [Password Validator](./password_validator/README.md)
