@@ -23,3 +23,4 @@ In each of the programming language directories, there is a README.md file with 
 
 ## List of Katas 📚
 - [FizzBuzz](./fizzbuzz/README.md)
+- [User Signup](./user_signup/README.md)
