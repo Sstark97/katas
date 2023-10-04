@@ -1,12 +1,12 @@
 # Katas 🥷🏻
-En este repositorio están agrupadas todas las katas/coding dojos que he realizado que he ido realizando, con algunas 
-soluciones diferentes o con diferentes lenguajes de programación.
-Con el fin de tener agrupadas todas las soluciones que he ido realizando, ver diferentes aproximaciones a un mismo 
-problema y poder compararlas.
+In this repository, all the katas/coding dojos that I have done are grouped together, with some solutions being 
+different or using different programming languages.
+The goal is to have all the solutions I have worked on grouped together, see different approaches to the same problem, 
+and be able to compare them.
 
-## Estructura ⚙️
-El repositorio contiene a su vez diferentes proyectos para cada kata, organizadas cada una de estás por los diferentes 
-lenguajes de programación que he ido utilizando. La estructura de directorios es de la siguiente manera:
+## Structure ⚙️
+The repository, in turn, contains different projects for each kata, each organized by the different programming languages 
+I have used. The directory structure is as follows:
 ```
 katas
 ├── kata1
@@ -19,5 +19,7 @@ katas
 │   ├── ...
 ├── kata3
 ```
-En cada uno de los directorios de lenguajes de programación, se encuentra un fichero README.md con la descripción de la
-kata.
+In each of the programming language directories, there is a README.md file with the kata's description.
+
+## List of Katas 📚
+- [FizzBuzz](./fizzbuzz/README.md)
