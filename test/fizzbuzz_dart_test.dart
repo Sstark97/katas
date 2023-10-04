@@ -6,5 +6,9 @@ void main() {
     test("number 1 must be '1'", () {
       expect(fizzbuzz(1), equals("1"));
     });
+
+    test("number 3 must be 'fizz'", () {
+      expect(fizzbuzz(3), equals("fizz"));
+    });
   });
 }
