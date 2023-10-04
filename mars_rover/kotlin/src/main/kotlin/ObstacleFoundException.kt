@@ -1,0 +1,1 @@
+class ObstacleFoundException(message: String) : Exception(message)

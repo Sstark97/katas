@@ -1,0 +1,1 @@
+class NotCommandException(message: String) : Exception(message)
