@@ -30,5 +30,9 @@ void main() {
     test("any number divisible by 15 must be 'fizzbuzz'", () {
       expect(fizzbuzz(30), equals("fizzbuzz"));
     });
+
+    test("the rest of the numbers must be the same number", () {
+      expect(fizzbuzz(2), equals("2"));
+    });
   });
 }
