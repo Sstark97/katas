@@ -16,7 +16,7 @@ void main() {
     });
 
     test("the number 15 must be 'fizzbuzz'", () {
-      expect(fizzbuzz(5), equals("fizzbuzz"));
+      expect(fizzbuzz(15), equals("fizzbuzz"));
     });
   });
 }
