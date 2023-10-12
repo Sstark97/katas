@@ -18,5 +18,9 @@ void main() {
     test("the number 15 must be 'fizzbuzz'", () {
       expect(fizzbuzz(15), equals("fizzbuzz"));
     });
+
+    test("any number divisible by 3 must be 'fizz'", () {
+      expect(fizzbuzz(6), equals("fizz"));
+    });
   });
 }
