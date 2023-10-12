@@ -26,5 +26,9 @@ void main() {
     test("any number divisible by 5 must be 'buzz'", () {
       expect(fizzbuzz(10), equals("buzz"));
     });
+
+    test("any number divisible by 15 must be 'fizzbuzz'", () {
+      expect(fizzbuzz(30), equals("fizzbuzz"));
+    });
   });
 }
