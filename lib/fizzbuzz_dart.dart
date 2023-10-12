@@ -9,6 +9,6 @@ String fizzbuzz(int number) {
   return "1";
 }
 
-bool isBuzz(int number) => number == 5;
+bool isBuzz(int number) => number % 5 == 0;
 
 bool isFizz(int number) => number % 3 == 0;
