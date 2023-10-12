@@ -1,0 +1,30 @@
+plugins {
+    id 'java'
+    id 'info.solidsoft.pitest' version '1.9.0'
+}
+
+pitest {
+    targetClasses = ['org.example.*']
+    targetTests = ['org.example.*']
+    pitestVersion = '1.9.0' //not needed when a default PIT version should be used
+    threads = 4
+    outputFormats = ['XML', 'HTML']
+    timestampedReports = false
+    junit5PluginVersion = '1.0.0'    //or 0.15 for PIT <1.9.0
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+test {
+    useJUnitPlatform()
+}
