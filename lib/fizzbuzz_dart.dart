@@ -1,5 +1,5 @@
 String fizzbuzz(int number) {
-  if (number == 15) {
+  if (number % 15 == 0) {
     return "fizzbuzz";
   } else if(isFizz(number)) {
     return "fizz";
