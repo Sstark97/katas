@@ -6,7 +6,7 @@ String fizzbuzz(int number) {
   } else if(isBuzz(number)) {
     return "buzz";
   }
-  return "1";
+  return number.toString();
 }
 
 bool isFizzBuzz(int number) => isFizz(number) && isBuzz(number);
