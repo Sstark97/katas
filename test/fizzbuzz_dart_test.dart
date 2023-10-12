@@ -22,5 +22,9 @@ void main() {
     test("any number divisible by 3 must be 'fizz'", () {
       expect(fizzbuzz(6), equals("fizz"));
     });
+
+    test("any number divisible by 5 must be 'buzz'", () {
+      expect(fizzbuzz(10), equals("buzz"));
+    });
   });
 }
