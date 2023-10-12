@@ -31,3 +31,4 @@ In each of the programming language directories, there is a README.md file with 
 - [Markdown Kata](./markdown/README.md)
 - [Roman Numerals](./roman_numerals/README.md)
 - [Maxibon](./maxibon/README.md)
+- [Template Engine](./template_engine/README.md)
