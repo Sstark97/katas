@@ -27,3 +27,4 @@ In each of the programming language directories, there is a README.md file with 
 - [Mars Rover](./mars_rover/README.md)
 - [Password Validator](./password_validator/README.md)
 - [String Calculator](./string_calculator/README.md)
+- [Word Wrap](./word_wrap/README.md)
