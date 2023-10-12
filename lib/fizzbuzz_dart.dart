@@ -11,4 +11,4 @@ String fizzbuzz(int number) {
 
 bool isBuzz(int number) => number == 5;
 
-bool isFizz(int number) => number == 3;
+bool isFizz(int number) => number % 3 == 0;
